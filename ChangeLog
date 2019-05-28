@@ -1,0 +1,97 @@
+* Version 0.1 <01-12-2018>:
+    * Initial release.
+
+* Version 0.1 (Alpha) <01-01-2019>:
+	*. Created Simple Engine 
+	*. Created Simple Installer 
+
+* Version 0.2 (Beta) <02-04-2019>:
+	*. updated engine support 
+	*. created update script for remove extra files
+	*. created delete script fot delete all of files
+	*. updated README.md for usermannual 
+	*. updated about file 
+	*. removed 2 sloats from script manager 
+	*. fixed bugs at tools & utilites options
+
+* Version 0.3 (Beta) <02-25-2019>:
+	*. updated bashrc configuration file
+	*. updated README.md 
+	*. adding "devops" flag in engine
+	*. removed "about.so" file and added it to script 
+	*. renamed 2 Script Manager to Hacking Scripts
+	*. modified -> 2 -> Hacking Scripts
+	*. fixed bugs (option 4) System Maintanance
+	*. removed and added more function on (option 4) System Maintanance 
+	*. removed python2 from packages list instead, added vim here 
+	*. updated delete script for beta release 
+	*. changed the name of EchoMinal_Alpha.zip file to extras.zip
+	*. removed unnessery files & folders 
+	*. reduceed size of total project 
+	*. created install script as new method ~ script version 0.2.0 dev 
+	*. created engine script and updated a lot ~ script version 0.2.5 dev 
+	*. added SysAdmin.bash file for better system admin support 
+	*. deleted all of options from Hacking Script options (option 2) for development
+	*. we'll update it letter....
+
+Version 0.4.1 (Beta):
+	*. removing extras code from engine 
+	*. reduces lot of spaces 
+	*. tested weeman script successfully 
+	*. updated changelog 
+	*. removed veriables 
+	*. Removing options 4 > 1 
+	*. fixed error on exiting 4 > 0 quit
+	*. fixed error on exiting 3 > 0 quit
+	*. fixed engine exiting/runing error
+	*. add cmatrix on 3 > ** 
+
+Version 0.4.2 (Beta) 
+	*. Updated Shell Colors
+	*. Updated ZSH Themes
+	*. Updated extras.zip file
+	*. fixed bashrc configuration
+	*. fixed zshrc configuration
+
+Version 1.0.2 (Lapato-Development Release)
+	*. fixed version issue
+	*. Removing options 4 > 1 
+	*. updated zshrc configuration				
+	*. updated bashrc configuration				
+	*. added zip/unzip archiver script  		
+	*. added iso compress/decompress script 	
+	*. added weeman script
+	*. termux style color has been changed 
+
+	-> Engine Updates ~ 
+		*. generate new style code 
+		*. normal user won't understand the code :) 
+		*. fixed exit issue 
+		*. fixed double enter issue
+		*. disable autorun from termux and updated bashrc configuration file
+		*. bash has been removed
+		*. added whois on tools menu
+		*. removed apt and added pkg for better performence 
+		*. updated package update/upgrade system
+		*. updated package install system
+		*. updated package uninstall system
+		*. newe settings added, now you can change your colors and fonts
+	-> Installer Updates ~ 
+		*. added pkg instead of apt (removed apt ~ for better performence)
+		*. removed vim from installation
+		*. removed unstable packages
+		*. added new packages
+		*. new settings has been added
+
+	*. need to move sysadmin script to .scripts || letter 
+	*. add sysadmin as external script || letter 
+	*. need to remove bash from 1 || letter 
+	*. need to update zipc and isoc (add back button) (fix directiry) || letter 
+
+Version 1.0.3 (Lapato-Development Release)
+	*. engine header fixes
+	*. installation script fixes
+
+Compiled by,
+Farhan Sadik
+Square Development Group 
