@@ -42,26 +42,31 @@ Termux is an Android terminal emulator and Linux environment app that works dire
 * Android Terminal Emulator: Android terminal app which Termux terminal handling is based on. Inactive. [Source](https://github.com/jackpal/Android-Terminal-Emulator).
 
 ## Requirements
-  * Termux 			(download latest version from play store)
-  * Termux-Api 	(download latest version from play store)
-  * X-Plorer		(3rd Pary App) (for beginners it's very helpful) [click here to download](https://play.google.com/store/apps/details?id=com.lonelycatgames.Xplore&hl=en)
-  * Internet Connection
+  * Termux [download](https://play.google.com/store/apps/details?id=com.termux&hl=en)
+  * Termux-Api [download](https://play.google.com/store/apps/details?id=com.termux.api&hl=en)
   * Android Root Access
 
 ### Installation Method
-> Step 1 - Internet Connection Required
+> Beginnergs Method
 
-1. Firstly open termux app (internet connection required)
-2. After open the termux app, some of packages will be installed automated. Please do not stop, wait for finish the installation.
-3. After installation compleate, then you'll have the `bash` shall.
+just copy and paste those commands, one by one
+```
+pkg install git 
+https://github.com/farhansadik/EchoMinal.git
+cd EchoMinal
+./install
+```
+to run echominal type: 
+```
+engine
+```
 
-> Step 2 - Internet Connection Required
+> Step 2 - Advance Method
 
 1. Update packages to latest version
-	- Update Termux using `pkg update` command.
-	- Install git using `apt install git` command.
-2. Download the repository files (project) from the download section or clone this project by typing in the bash the following command: `git clone https://gitlab.com/farhansadik/echominal.git`
-3. Then Redirect to `echominal` folder using `cd echominal`.
+	- Install git using `pkg install git` command.
+2. Download the repository files (project) from the download section or clone this project by typing in the bash the following command: `git clone https://github.com/farhansadik/EchoMinal.git`
+3. Then Redirect to `EchoMinal` folder using `cd EchoMinal`.
 4. Enter `ls` command, for check all of files directory. The output looks like ~
   ```
   farhansadik@linux ~ > ls
@@ -72,9 +77,6 @@ Termux is an Android terminal emulator and Linux environment app that works dire
 7. After install all of packages, close termux app and run it again..
 8. Hope, everything works fine. If you face any problem please mail me at `farhansadikriduan@gmail.com` or create a issue on my repo. I'll try my best to fix those issue.
 *. Thank's a lot.
-
-## How to use the Termux application
- * wiil be added soon
 
 # Screenshots
 ## EchoMinal Engine
