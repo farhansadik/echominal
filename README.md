@@ -61,7 +61,7 @@ to run echominal type:
 engine
 ```
 
-> Step 2 - Advance Method
+> Advance Method
 
 1. Update packages to latest version
 	- Install git using `pkg install git` command.
