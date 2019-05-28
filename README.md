@@ -52,7 +52,7 @@ Termux is an Android terminal emulator and Linux environment app that works dire
 just copy and paste those commands, one by one
 ```
 pkg install git 
-https://github.com/farhansadik/EchoMinal.git
+git clone https://github.com/farhansadik/EchoMinal.git
 cd EchoMinal
 ./install
 ```
