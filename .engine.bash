@@ -2,13 +2,21 @@
 #!/system/bin/bash
 
 set import busybox 
-set import bash
-set import netstat 
+set import bash from busybox
+set import netstat from busybox
 set import whois 
 set import p7zip
+set import zshrc 
+set import bashrc
+set import vim 
+set import nano 
+set import python from termux-api
+set import pkg-packages from busybox
+set import zip 
+set import git 
 
-script_version="1.1.17"
-engine_version="1.0.3 Lapato"
+script_version="1.2.02"
+engine_version="1.0.4 Lapato"
 
 ####################################################################
 # Farhan Sadik (squaredevops.blogspot.com) - May 2019
@@ -35,6 +43,10 @@ shell_style=~/.config/echominal/shell_style.cfg;
 
 # Purpose: Display pause prompt
 function pause(){
+
+	# that motherfucker 'pause' fucked me a lot! 
+	# that pussy 
+
 	local message="$@"
 	[ -z $message ] && message="Press [Enter] key to continue..."
 	read -p "$message" readEnterKey
@@ -67,12 +79,8 @@ function footer() {
 	echo && exit 0;
 }
 function show_menu(){
-	clear && printf "$red" && figlet "EchoMinal"; printf "$stop"
-	#printf "$blue" && printf "Termux Manager for Android OS $stop \n" # && echo
-	printf "$deep_green" && printf "Termux Manager for Android OS\n" # && echo
-	#printf "$red" && printf "Termux Manager for Android OS\n" # && echo
-	#printf "$yellow" && printf "Termux Manager for Android OS $stop \n" # && echo
-	printf "\n$stop"
+	clear && printf "$red" && figlet "EchoMinal"; printf "$stop";
+	printf "$deep_green" && printf "Termux Manager for Android OS\n"; printf "\n$stop"
 	printf "  [1]  Terminal\n";
 	printf "  [2]  Hacking Scripts\n";
 	printf "  [3]  Tools & Utilities\n";
@@ -87,7 +95,7 @@ function terminal() {
 		elif [[ $input == 2 ]]; then zsh # zsh 5.7.1-1 (arch-linux) 
 		elif [[ $input == 0 ]]; then $engine # run the engine again 
 		else printf "Wrong Input\n"; 
-	fi; #pause
+	fi; pause; # hey motherfucker's! please do not remove that 'pause' thing (fuck)
 }
 function hacking_script() {
 	
@@ -138,9 +146,9 @@ function hacking_script() {
 			sleep 0;  $engine
 		;;
 		*) 
-			printf "Wrong Input\n"; pause
+			printf "Wrong Input\n";
 		;;
-	esac; # pause 
+	esac; pause
 }
 function tools() {
 	# tools_and_utilities function
@@ -167,7 +175,7 @@ function tools() {
 	elif [[ $input == 0 ]]; then $engine; # run the engine again 
 	else {
 		printf "Invalid Options\n" && echo; # footer;
-	}; fi; # pause; 
+	}; fi; pause; 
 }
 function input_settings() {
     printf "\n$deep_green" && printf "Please enter your short name\n$stop\n";
@@ -216,7 +224,7 @@ function system() {
 	printf "[4]  Operating System Info\n"; 
 	printf "[5]  Hostname & DNS Info\n";
 	printf "[6]  Network Interface\n";
-	printf "$yellow" && printf "[7]  EchoMinal Settings $stop\n";
+	printf "[7]$yellow  EchoMinal Settings $stop\n";
 	printf "$red" && printf "[8]  Disk Usage\n"; 
 	printf "[9]  Reboot Device\n"; 
 	printf "[0]  Quit\n $stop";
@@ -241,23 +249,25 @@ function system() {
 		printf "$yellow";
 		printf "  [1] ZSH Font\n";
 		printf "  [2] ZSH Color\n";
-		printf "  [3] ZSH Theme\n";
-		printf "  [4] Update ZSH\n";
-		printf "  [5] Uninstall ZSH\n";
-		printf "  [6] EchoMinal Shell Settings\n";
+		# printf "  [3] ZSH Theme\n"; # failed to run on android 
+		printf "  [3] Update ZSH\n";
+		printf "  [4] Uninstall ZSH\n";
+		printf "  [5] EchoMinal Shell Settings\n";
+		printf "  [6] Update EchoMinal\n";
 		printf "  [0] Back $stop \n";
 		input && if [[ $input == 1 ]]; then {
 			$zsh_font
 		} elif [[ $input == 2 ]]; then {
 			$zsh_color;
 		} elif [[ $input == 3 ]]; then {
-			$zsh_theme;
-		} elif [[ $input == 4 ]]; then {
 			sh $zsh_update;
-		} elif [[ $input == 5 ]]; then {
+		} elif [[ $input == 4 ]]; then {
 			$zsh_uninstall;
-		} elif [[ $input == 6 ]]; then {
+		} elif [[ $input == 5 ]]; then {
 			input_settings;
+		} elif [[ $input == 6 ]]; then {
+			echo "not added the function"
+			sleep 0;
 		} else {
 			echo "invalid";
 		}; fi;
@@ -265,7 +275,7 @@ function system() {
 	elif [[ $input == 8 ]]; then disk_info;
 	elif [[ $input == 9 ]]; then echo "System Rebooting"; reboot && sleep 0.5; # root access required
 	elif [[ $input == 0 ]]; then $engine;
-	else echo "Wrong KeyWord"; fi; #pause;
+	else echo "Wrong KeyWord"; fi; pause;
 }
 function about() {
 	printf " $yellow
@@ -302,11 +312,8 @@ function main(){
 		*) 
 			echo "Please select between 1 to 5 choice only.";
 			printf "Sorry you've entered wrong options\n"; sleep 1;
-			echo -e "\e[5mPlease Wait.....\e[0m"; sleep 1
-			printf "Connecting to Database\n"; sleep 1
-			echo -e "\e[5mPlease Wait.....\e[0m"; sleep 1
-			echo -e "$red\e[7mRebooting Engine.....\e[0m" && sleep 1; 
-			# pause - enters the pause menu 
+			echo -e "\e[5mPlease Wait.....\e[0m"; sleep 0.5
+			echo -e "$red\e[7mRebooting Engine.....\e[0m" && sleep 0.5; 
 			$engine;
 	# pause
 	esac
