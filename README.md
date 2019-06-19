@@ -20,12 +20,28 @@ Termux is an Android terminal emulator and Linux environment app that works dire
   * Simple to use
   * Fast and beautiful design
   * We used material design & UX library to build this application
-  * We used MVC design pattern
-  * Password hashed
   * ... and more
 
 ## Language Used
   * Bash Scripting
+
+## CCLi Command List 
+
+1. install ~ to install a package <br>
+    example ~ `install <package-name>`
+
+2. remove ~ to remove/install a package <br>
+    example ~ `remove <package-name>`
+
+3. sync ~ to update/sync distro repository <br>
+    example ~ type `sync` and hit enter
+
+4. upgrade ~ to upgrade all of package <br>
+    example ~ type `upgrade` and hit enter
+
+5. help ~ for get help <br>
+    example ~ type `help` and hit enter
+
 
 ## Terminal resources
 * [XTerm control sequences](http://invisible-island.net/xterm/ctlseqs/ctlseqs.html)
@@ -56,7 +72,7 @@ git clone https://github.com/farhansadik/EchoMinal.git
 cd EchoMinal
 ./install
 ```
-to run echominal type: 
+after install **please restart termux app**. To run echominal type: 
 ```
 engine
 ```
