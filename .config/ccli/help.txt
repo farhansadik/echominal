@@ -1,0 +1,33 @@
+CCLI ~ User Commands
+
+NAME
+	CCLI - simple script for beginners to run one command in any linux distro
+
+DESCRIPTION
+
+	nstall ~ to install a package		ex ~ install <package-name>
+
+	remove ~ to remove/install a package	ex ~ remove <package-name>
+
+	sync ~ to update/sync distro repository	
+
+	upgrade ~ to upgrade all of package	
+
+	help ~ for get help
+
+
+AUTHOR
+	Written by Farhan Sadik
+
+REPORTING BUGS
+	Report any bugs to <https://github.com/ahsabbir103/Common-command-line-interface-CCLI/issues>
+
+COPYRIGHT
+	Copyright © 2019 Square Development Group
+	This  is  free software: you are free to change and redistribute it. There is NO WARRANTY, to the 
+	extent permitted by law.
+
+SEE ALSO
+	Full documentation <https://github.com/ahsabbir103/Common-command-line-interface-CCLI/wiki>
+
+Square Group                                May 2019                                            CCLi(1)

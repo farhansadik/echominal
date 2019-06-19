@@ -83,14 +83,27 @@ Version 1.0.2 (Lapato-Development Release)
 		*. added new packages
 		*. new settings has been added
 
-	*. need to move sysadmin script to .scripts || letter 
-	*. add sysadmin as external script || letter 
-	*. need to remove bash from 1 || letter 
-	*. need to update zipc and isoc (add back button) (fix directiry) || letter 
-
 Version 1.0.3 (Lapato-Development Release)
 	*. engine header fixes
 	*. installation script fixes
+	*. need to move sysadmin script to .scripts
+	*. need to remove bash from 1
+
+Version 1.0.4 (Lapato-Development Release)
+	*. added nano & vim on installer
+	*. added update system
+	*. fixes quit issue
+	*. fixes network info quit issue
+	*. add sysadmin as external script
+
+Version 1.0.5 (Lapato-Development Release)
+	*. removed extras.zip 
+	*. reduced size of script
+	*. added ccli - common command line user interface
+	*. updated installer script
+	*. updated README section 											|| letter - next release 
+	*. need to update zipc and isoc (add back button) (fix directiry) 	|| letter - next release 
+
 
 Compiled by,
 Farhan Sadik
