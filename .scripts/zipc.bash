@@ -1,34 +1,34 @@
 #!/bin/bash
+#!/system/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
-set import zip
-
-# the zip archiver for termux 
-# approved - applyed - deployed 
+set import zip from busybox
+set import unzip from busybox
+set import figlet
 
 function input() {
-    read -p "`whoami`@linux ~ > " input
+    shell_style=~/.config/echominal/shell_style.cfg;
+    read -p "`cat $shell_style`" input;
 }
 
-function zipc() {
-    echo "[1] Archive Zip"
-    echo "[2] Extract Zip"
-    input
-    if [[ $input == 1 ]];
-        then {
-            read -p "enter file name ~ " FileNameZip
-            zip -r $FileNameZip * 
-        }
-    elif [[ $input == 2 ]];
-        then {
-            read -p "enter file name ~ " fileName_ofZip
-            unzip $fileName_ofZip
-        }
-    else {
-        echo "invalid options";
+main() {
+    echo && figlet "ZipC" && echo;
+    printf "[1] Archive Zip\n[2] Extract Zip\n[*] Quit\n";
+    echo && input;
+    if [[ $input == 1 ]]; then {
+            read -p "enter file name ~ " FileNameZip; zip -r $FileNameZip *;
+        }; elif [[ $input == 2 ]]; then {
+            read -p "enter file name ~ " fileName_ofZip; unzip $fileName_ofZip;
+        }; elif [[ $input == * ]]; then {
+            echo "Bye, Bye!" && exit 1;
+        }; else {
+            echo "invalid options";
     }; fi;
 }
 
-zipc
+main
 
-# script version ~ 0.2 
-# by Farhan Sadik
+# ZipC
+# Script Version ~ 0.5
+# By Farhan Sadik
+# Square Development Group
