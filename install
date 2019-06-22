@@ -1,12 +1,13 @@
 #!/bin/bash
-#!/system/bin/bash 
+#!/system/bin/bash
+#!/usr/bin/env bash
 #!/data/data/com.termux/files/usr/bin/bash
 
 set import busybox
 set import bash from busybox
 
-script_version='1.3.05';
-engine_version="1.0.5 Lapato"
+script_version='1.3.07';
+engine_version="1.0.6 Marato"
 
 # Define variables
 red='\033[1;91m'; deep_green='\033[0;32m'; green='\033[1;92m'; yellow='\033[1;93m'; blue='\033[1;94m'; white='\033[1;97m'; stop='\e[0m';
@@ -20,11 +21,11 @@ shell_style=~/.config/echominal/shell_style.cfg;
 # logs
 log=~/.log/system-status.log;
 
-function alt_offline_installation() {
+function offline_installation() {
 
     echo -e "\e[1m\e[32m==> \e[97mSearching for files...\e[0m";
     printf "\e[1m\e[34m  -> \e[97mLocating installation script : \e[0m";
-	if cd $loc && find install >> $log; 
+	if cd $loc && find install >> $log;
 		then sleep 0.5 && printf "Found\n";
 		else sleep 0.5 && printf "$red"; printf "Not Found\n"; fi
     printf "\e[1m\e[34m  -> \e[97mCreating files & folder 	  : \e[0m";
@@ -32,76 +33,33 @@ function alt_offline_installation() {
     	then sleep 0.5 && printf "Done\n";
 		else sleep 0.5 && printf "$red"; printf "Failed to create files & folder\n"; fi
 
-	echo -e "\e[1m\e[32m==> \e[97mPreparing for installation...\e[0m";  
+	echo -e "\e[1m\e[32m==> \e[97mPreparing for installation...\e[0m";
 	printf "\e[1m\e[34m  -> \e[97mCopyting Files 			  : \e[0m";
-	if cd $loc && cp -rfv .config .scripts .bashrc .engine.bash $HOME >> $log; 
+	if cd $loc && cp -rv .config .scripts .bashrc .engine.bash $HOME >> $log;
 		then sleep 0.5 && printf "Done\n";
 		else sleep 0.5 && printf "$red"; printf "Failed to copy files\n"; fi
-}
-
-offline_installation() {
-
-	######################################################
-	# disabled 
-	######################################################
-
-	# step 1 (creating log files and folder & locating $file)
-    echo -e "\e[1m\e[32m==> \e[97mSearching for files...\e[0m";
-    echo -e "\e[1m\e[32m==> \e[97mPreparing for installation...\e[0m";
-    printf "\e[1m\e[34m  -> \e[97mCreating files & folder 	  : \e[0m";
-    if cd $HOME; mkdir ~/.log && touch ~/.log/system-status.log; # creating log file
-    	then sleep 0.5 && printf "Done\n";
-		else sleep 0.5 && printf "$red"; printf "Failed to create files & folder\n"; fi
-	if cd $HOME; mkdir ~/.config; then sleep 0; # creating config file 
-	else printf "$red"; printf "Failed config(dir)\n"; fi;
-	if cd $HOME; mkdir ~/.scripts; then sleep 0; # creating script file 
-	else printf "$red"; printf "Failed scripts(dir)\n"; fi;
-	printf "\e[1m\e[34m  -> \e[97mLocating installation script : \e[0m";
-	if cd $loc && find $file >> $log; 
-		then sleep 0.5 && printf "Found\n";
-		else sleep 0.5 && printf "$red"; printf "Not Found\n"; fi
-	
-	# step 2 (clonning files)
-	printf "\e[1m\e[34m  -> \e[97mCopying files                : \e[0m";
-	if cd $loc; cp -rfv $file $engine $HOME >> $log;
-			# loc=~/echominal/; # default clone location
-			# file=extras.zip; # extra packages 
-			# engine=~/.engine.bash; # the engine modified 
-		then sleep 0.5 && printf "Done\n";
-		else sleep 0.5 && printf "$red"; printf "Failed to copy\n"; fi
-
-	# step 3 (unpacking archives)
-	printf "\e[1m\e[34m  -> \e[97mUnpacking archivers          : \e[0m";
-	if cd $HOME; unzip $file; then sleep 0.5
-		else sleep 0.5 && printf "$red"; printf "Failed to unpack $file\n"; fi
-
-    # step 4 (deleting archives)
-	printf "\e[1m\e[34m  -> \e[97mDeleting archivers           : \e[0m";
-	if cd $HOME; rm -rfv $file >> $log; 
-	 	then sleep 0.5 && printf "Done\n";
-	 	else sleep 0.5 && printf "$red"; printf "Failed to delete $file\n"; fi
 }
 online_installation() {
 	echo && echo -e "$red\e[7m";
 	printf "|--------------NOTE-------------|\n| this installation is going to |\n| need internet connection on   |\n| your android device. Otherwise|\n| you'll missing some of package|\n|-------------------------------|\n $stop";
 
-	# checking for updates and upgrades 
+	# checking for updates and upgrades
     echo -e "\e[1m\e[32m==> \e[97mUpdating Database......\e[0m";
     printf "\e[1m\e[34m  -> \e[97mChecking for updates....\e[0m\n";
     if apt update; then pkg upgrade; fi;
 
-    # installing packages 
+    # installing packages
     echo -e "\e[1m\e[32m==> \e[97mInstalling Packages......\e[0m";
     printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 1 ....\e[0m\n";
-    pkg install screenfetch cmatrix sl tree python python2 htop rsync fish termux-api p7zip; #root-repo (is not needed); 
+    pkg install screenfetch htop termux-api p7zip vim; #root-repo (is not needed);
     printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 2 ....\e[0m\n";
-    pkg install figlet git zip unzip zsh # required packages
+    pkg install figlet zip unzip zsh nano # required packages
 }
 function input_settings() {
     printf "\n$deep_green" && printf "Please enter your short name\n$stop\n";
     read -p "enter user name    : " user && echo $user > $user_name;
     read -p "enter pc/host name : " pc && echo $pc > $pc_name;
-    
+
     printf "\n$deep_green" && printf "Please select your style. This is how it should look like. \n \n";
     printf "$yellow" && printf "[1] Arch Linux Style $stop
     [$red`cat $user_name`$white@$blue`cat $pc_name`$white ~] $ \n";
@@ -122,7 +80,7 @@ function input_settings() {
         echo "Installing ......"; sleep 0.5;
         if echo "[`cat $user_name`@`cat $pc_name` ~] $ " > $shell_style; then {
             echo "Install Compleated";
-        }; fi; 
+        }; fi;
     }; elif [[ $style == 2 ]]; then {
         echo "Installing ......"; sleep 0.5;
         echo "┌─[`cat $user_name`@`cat $pc_name`]─[~]
@@ -136,17 +94,18 @@ function input_settings() {
     }; fi && printf "\n$stop";
 }
 function ccli_installation() {
-	printf "$deep_green\n" && printf "Installing CCLi$yellow"; 
-    figlet "CCLi"; printf "\n $red"
+	printf "$deep_green\n" && printf "Installing CCLi$yellow";
+    echo; figlet "CCLi"; printf "\n $yellow"
 
-    if printf "Cloning Configuration : $red"; then {
+    if printf "Installing Configuration : $red"; then {
 		if less ~/.config/ccli/termux.cfg >> ~/.bashrc; then {
-			printf "Bash Install Compleated$stop\n";	
+			printf "Bash Install Compleated$stop\n";
 		}; fi
+        printf "Installing Configuration : $red";
 		if less ~/.config/ccli/termux.cfg >> ~/.zshrc; then {
-			printf "Zsh Install Compleated$stop\n";	
+			printf "Zsh Install Compleated$stop\n";
 		}; fi
-	}; fi;	
+	}; fi;
 
 }
 function termux_ohmyzsh() {
@@ -164,7 +123,7 @@ git clone git://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh" --depth
 mv "$HOME/.zshrc" "$HOME/.zshrc.bak.$(date +%Y.%m.%d-%H:%M:%S)"
 cp "$HOME/.oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 
-# setting 
+# setting
 sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
 sed -i '1iZSH_THEME="agnoster"' "$HOME/.zshrc"
 echo "alias chcolor='$HOME/.termux/colors.sh'" >> "$HOME/.zshrc"
@@ -173,7 +132,7 @@ echo "alias chfont='$HOME/.termux/fonts.sh'" >> "$HOME/.zshrc"
 # cloning-git (zsh-syntax-highlighting)
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
 echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc"
-chsh -s zsh # getting permissions 
+chsh -s zsh # getting permissions
 echo "oh-my-zsh install complete!\nChoose your color scheme now~" && $HOME/.termux/colors.sh
 echo "Choose your font now~" && $HOME/.termux/fonts.sh
 }
@@ -183,11 +142,11 @@ printf "Engine ~$deep_green Echominal$yellow $engine_version $stop";
 echo  "
 ______________________
 < Installing EchoMinal >
----------------------- 
+----------------------
         \   ^__^
          \  (oo)\_______
             (__)\       )--
-                ||----w | 
+                ||----w |
                 ||     ||";
 
 printf "\n$red" && printf "Installing EchoMinal\n";
@@ -195,8 +154,7 @@ printf "$white" && echo -e "Loading Installation Script"; sleep 1
 printf "$white" && echo -e "\e[5mPlease Wait.....\e[0m"; sleep 1
 
 online_installation;
-# offline_installation; 
-alt_offline_installation;
+offline_installation;
 if cd $HOME; then chmod +x $engine; fi; # getting permission
 termux_ohmyzsh;
 input_settings;
@@ -207,7 +165,7 @@ printf "$red\n" && echo "Please restart termux!"; printf "$stop\n";
 printf "$deep_green" && printf "EchoMinal$yellow $engine_version\n$stop"
 printf "$deep_green" && printf "Installation Script$yellow $script_version$stop\n$deep_green";
 printf "Created by$red Farhan Sadik$stop\n$deep_green";
-printf "Square Development Group\n"; printf "\n$stop" && exit 0; 
+printf "Square Development Group\n"; printf "\n$stop" && exit 0;
 
 # a script by farhan sadik
 # square development group
