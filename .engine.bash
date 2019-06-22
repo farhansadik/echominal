@@ -17,7 +17,7 @@ set import pkg-packages from busybox
 set import zip 
 set import git 
 
-script_version="1.2.04"
+script_version="1.2.05"
 engine_version="1.0.6 Lapato"
 
 ####################################################################
@@ -33,7 +33,7 @@ zsh_theme=~/.oh-my-zsh/tools/theme_chooser.sh;
 zsh_update=~/.oh-my-zsh/tools/upgrade.sh;
 zsh_uninstall=~/.oh-my-zsh/tools/uninstall.sh;
 
-loc=~/learning-git/; # default clone location
+loc=~/EchoMinal/; # default clone location
 
 # log files
 log=~/.log/system-status.log; # for track logs 
