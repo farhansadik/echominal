@@ -1,187 +1,65 @@
 #!/bin/bash
 #!/system/bin/bash
+#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/bash
 
-set import busybox 
+set import busybox
 set import bash from busybox
-set import netstat from busybox
-set import whois 
-set import p7zip
-set import zshrc 
-set import bashrc
-set import vim 
-set import nano 
-set import python from termux-api
-set import pkg-packages from busybox
-set import zip 
-set import git 
 
-script_version="1.2.02"
-engine_version="1.0.4 Lapato"
-
-####################################################################
-# Farhan Sadik (squaredevops.blogspot.com) - May 2019
-####################################################################
+script_version='1.3.07';
+engine_version="1.0.6 Marato"
 
 # Define variables
 red='\033[1;91m'; deep_green='\033[0;32m'; green='\033[1;92m'; yellow='\033[1;93m'; blue='\033[1;94m'; white='\033[1;97m'; stop='\e[0m';
-engine=~/./.engine.bash; # the engine modified 
-zsh_color='/data/data/com.termux/files/home/.termux/colors.sh';
-zsh_font='/data/data/com.termux/files/home/.termux/fonts.sh';
-zsh_theme=~/.oh-my-zsh/tools/theme_chooser.sh;
-zsh_update=~/.oh-my-zsh/tools/upgrade.sh;
-zsh_uninstall=~/.oh-my-zsh/tools/uninstall.sh;
+loc=~/EchoMinal/; # default clone location
 
-# log files
-log=~/.log/system-status.log; # for track logs 
-hacking_install_log=~/.log/hacking_install.log;
-hacking_running_log=~/.log/hacking_running.log;
-
-# shell-setting [in test]
+# shell-setting
 user_name=~/.config/echominal/user_name.cfg;
 pc_name=~/.config/echominal/pc_name.cfg;
 shell_style=~/.config/echominal/shell_style.cfg;
 
-# Purpose: Display pause prompt
-function pause(){
+# logs
+log=~/.log/system-status.log;
 
-	# that motherfucker 'pause' fucked me a lot! 
-	# that pussy 
+function offline_installation() {
 
-	local message="$@"
-	[ -z $message ] && message="Press [Enter] key to continue..."
-	read -p "$message" readEnterKey
-}
-function write_header(){
-	local h="$@"
-	echo "------------------------------------------------------";
-	echo " ${h}";
-	echo "------------------------------------------------------";
-}
-function disk_info() {
-	usep=$(echo $output | awk '{ print $1}' | cut -d'%' -f1)
-	  partition=$(echo $output | awk '{print $2}')
-	write_header " Disk Usage Info"
-	if [ "$EXCLUDE_LIST" != "" ] ; then
-	  df | grep -vE "^Filesystem|tmpfs|cdrom|${EXCLUDE_LIST}" | awk '{print $5 " " $6}'
-	  #df -H | grep -vE "^Filesystem|tmpfs|cdrom|${EXCLUDE_LIST}" | awk '{print $5 " " $6}'
-	else
-	  df | grep -vE "^Filesystem|tmpfs|cdrom" | awk '{print $5 " " $6}'
-	  #df -H | grep -vE "^Filesystem|tmpfs|cdrom" | awk '{print $5 " " $6}'
-	fi
-}
-function input() { 
-	echo; echo -n "`cat $shell_style`" && read input; echo;  	# modified
-	# echo; echo -n "`whoami`@linux ~> " && read input; echo; 	# orgional
-	# read -p "`cat $shell_style`" shell 						# tred 
-}
-function footer() {
-	printf "$deep_green" && printf "EchoMinal $engine_version\nCreated by Farhan Sadik\n $stop";
-	echo && exit 0;
-}
-function show_menu(){
-	clear && printf "$red" && figlet "EchoMinal"; printf "$stop";
-	printf "$deep_green" && printf "Termux Manager for Android OS\n"; printf "\n$stop"
-	printf "  [1]  Terminal\n";
-	printf "  [2]  Hacking Scripts\n";
-	printf "  [3]  Tools & Utilities\n";
-	printf "  [4]  System Maintanance\n";
-	printf "  [5]  About\n";
-	printf "  [0]  Exit\n";
-}
-function terminal() {
-	# this is terminal menu 
-	echo; printf "  [1]  Fish\n"; printf "  [2]  Zsh\n"; printf "  [0]  Back\n"; 
-	input && if [[ $input == 1 ]] ; then fish # fish 3.0.2-1 (arch-linux) 
-		elif [[ $input == 2 ]]; then zsh # zsh 5.7.1-1 (arch-linux) 
-		elif [[ $input == 0 ]]; then $engine # run the engine again 
-		else printf "Wrong Input\n"; 
-	fi; pause; # hey motherfucker's! please do not remove that 'pause' thing (fuck)
-}
-function hacking_script() {
-	
-	#########################################################################
-	# Script Menager 
-	# UNDER DEVELOPMENT - CROSSLINE
-	#########################################################################
- 
-	printf "\n$red|-[ NOTE ] -------------------------------|\n| This function is under development      |\n| Please wait for next release            |\n|_________________________________________|\n$stop"; 
-	echo; # extra echo
-	printf "  [01] Install all scripts\n"; # install all 
-	printf "  [02] Weeman\n";  # run weeman script
-	printf "  [00] Exit\n";
+    echo -e "\e[1m\e[32m==> \e[97mSearching for files...\e[0m";
+    printf "\e[1m\e[34m  -> \e[97mLocating installation script : \e[0m";
+	if cd $loc && find install >> $log;
+		then sleep 0.5 && printf "Found\n";
+		else sleep 0.5 && printf "$red"; printf "Not Found\n"; fi
+    printf "\e[1m\e[34m  -> \e[97mCreating files & folder 	  : \e[0m";
+    if cd $HOME; mkdir ~/.log && touch ~/.log/system-status.log; # creating log file
+    	then sleep 0.5 && printf "Done\n";
+		else sleep 0.5 && printf "$red"; printf "Failed to create files & folder\n"; fi
 
-	input; # echo; # those data will store in $HOME/.scripts/
-	case $input in 
-		01)	# Install all of scripts 
-			printf "$red";
-			printf "[*] Changing Location	: "; if cd ~/.scripts/; then printf "OK\n"; fi;
-			printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
-			printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
-			printf "Ready to run.....\n $stop";
-
-			# installing weeman script 
-			echo && read -p "want to install weeman? (y/n) " WINSTALL; 
-			if [[ $WINSTALL == 'y' ]]; then {
-					echo -e "  \e[5mInstalling Weeman Script\e[0m"
-					if git clone https://github.com/evait-security/weeman; then printf "Compleate\n"; else printf "Failed\n"; fi;
-				}
-			elif [[ $WINSTALL == 'n' ]]; then { 
-				sleep 0.5
-			}; else {
-				echo "Invalid Options"
-			}; fi; 
-			
-			# printf "[*] Getting Permission	: "; if chmod +x $file; then printf "OK\n"; fi;
-		;;
-		02) # Weeman
-			printf "$red\n"; sleep 0.5
-			printf "[*] Changing Directory	: "; if cd ~/.scripts/weeman/; then printf "OK\n"; fi;
-			printf "[*] Checking Location	: "; if pwd > $hacking_running_log; then printf "OK\n"; fi;
-			printf "[*] Checking FileSystem : "; if ls >> $log; then printf "OK\n"; fi;
-			printf "[*] Getting Permission	: "; if chmod +x weeman.py; then printf "OK\n"; fi;
-			printf "Ready to run.....\n $stop"; sleep 1 
-			./weeman.py # running
-		;;
-		00) 
-			sleep 0;  $engine
-		;;
-		*) 
-			printf "Wrong Input\n";
-		;;
-	esac; pause
+	echo -e "\e[1m\e[32m==> \e[97mPreparing for installation...\e[0m";
+	printf "\e[1m\e[34m  -> \e[97mCopyting Files 			  : \e[0m";
+	if cd $loc && cp -rv .config .scripts .bashrc .engine.bash $HOME >> $log;
+		then sleep 0.5 && printf "Done\n";
+		else sleep 0.5 && printf "$red"; printf "Failed to copy files\n"; fi
 }
-function tools() {
-	# tools_and_utilities function
-	printf "\n  [1] Htop [Monitoring Tools]\n"; 
-	printf "  [2] Vim [Text Editor]\n";
-	printf "  [3] Nano [Text Editor]\n"; 
-	printf "  [4] Python\n"; 
-	printf "  [5] Linux SystemAdmin Tool\n";
-	printf "  [6] Zip Archiver\n";
-	printf "  [7] ISO Compression\n";
-	printf "  [8] Whois Tool\n";
-	printf "  [0] Back\n";
-	input; if [[ $input == 1 ]]; then htop;
-	elif [[ $input == 2 ]]; then vim;
-	elif [[ $input == 3 ]]; then nano;
-	elif [[ $input == 4 ]]; then python;
-	elif [[ $input == 5 ]]; then bash ~/.scripts/SysAdmin.bash;
-	elif [[ $input == 6 ]]; then bash ~/.scripts/zipc.bash;
-	elif [[ $input == 7 ]]; then bash ~/.scripts/isoc.bash;
-	elif [[ $input == 8 ]]; 
-		then {
-			read -p "enter address : " address; whois $address; pause
-		}
-	elif [[ $input == 0 ]]; then $engine; # run the engine again 
-	else {
-		printf "Invalid Options\n" && echo; # footer;
-	}; fi; pause; 
+online_installation() {
+	echo && echo -e "$red\e[7m";
+	printf "|--------------NOTE-------------|\n| this installation is going to |\n| need internet connection on   |\n| your android device. Otherwise|\n| you'll missing some of package|\n|-------------------------------|\n $stop";
+
+	# checking for updates and upgrades
+    echo -e "\e[1m\e[32m==> \e[97mUpdating Database......\e[0m";
+    printf "\e[1m\e[34m  -> \e[97mChecking for updates....\e[0m\n";
+    if apt update; then pkg upgrade; fi;
+
+    # installing packages
+    echo -e "\e[1m\e[32m==> \e[97mInstalling Packages......\e[0m";
+    printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 1 ....\e[0m\n";
+    pkg install screenfetch htop termux-api p7zip vim; #root-repo (is not needed);
+    printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 2 ....\e[0m\n";
+    pkg install figlet zip unzip zsh nano # required packages
 }
 function input_settings() {
     printf "\n$deep_green" && printf "Please enter your short name\n$stop\n";
     read -p "enter user name    : " user && echo $user > $user_name;
     read -p "enter pc/host name : " pc && echo $pc > $pc_name;
-    
+
     printf "\n$deep_green" && printf "Please select your style. This is how it should look like. \n \n";
     printf "$yellow" && printf "[1] Arch Linux Style $stop
     [$red`cat $user_name`$white@$blue`cat $pc_name`$white ~] $ \n";
@@ -202,7 +80,7 @@ function input_settings() {
         echo "Installing ......"; sleep 0.5;
         if echo "[`cat $user_name`@`cat $pc_name` ~] $ " > $shell_style; then {
             echo "Install Compleated";
-        }; fi; 
+        }; fi;
     }; elif [[ $style == 2 ]]; then {
         echo "Installing ......"; sleep 0.5;
         echo "┌─[`cat $user_name`@`cat $pc_name`]─[~]
@@ -215,117 +93,79 @@ function input_settings() {
         echo "Installing ......"; sleep 0.5; echo "Default Style Installing"; sleep 0.5; echo "`cat $user_name`@`cat $pc_name` $ " > $shell_style; echo "Install Compleated";
     }; fi && printf "\n$stop";
 }
-function system() {
-	# System Maintanance
-	printf "\n$red";
-	printf "[1]  System Upgrade\n";
-	printf "[2]  Install Package\n";
-	printf "[3]  Uninstall Package\n";
-	printf "[4]  Operating System Info\n"; 
-	printf "[5]  Hostname & DNS Info\n";
-	printf "[6]  Network Interface\n";
-	printf "[7]$yellow  EchoMinal Settings $stop\n";
-	printf "$red" && printf "[8]  Disk Usage\n"; 
-	printf "[9]  Reboot Device\n"; 
-	printf "[0]  Quit\n $stop";
-	
-	input && if [[ $input == 1 ]]; then 
-		# system upgrade 
-		echo && sleep 0.5; clear && figlet "SYSMD"; printf "\nChecking for updates..\n";
-		if apt update; then printf "Update Compleate\n"; else printf "failed to update, please try again\n"; fi;
-		printf "\nPreparing to system upgrade.....\n"; 
-		if pkg upgrade; then printf "System upgrade has been compleated\n"; else printf "failed to upgrade, please try again\n"; fi;
-	elif [[ $input == 2 ]]; then 
-		# install a package 
-		if apt update; then printf "Update Compleate\n"; fi; 
-		echo; if read -p "enter package name ~> " package_name; then echo && pkg install $package_name; fi; 
-	elif [[ $input == 3 ]]; then 
-		# uninstall a package 
-		echo; if read -p "enter package name ~> " package_name; then pkg remove $package_name; fi; 
-	elif [[ $input == 4 ]]; then screenfetch -n && echo ; 
-	elif [[ $input == 5 ]]; then netstat;
-	elif [[ $input == 6 ]]; then ifconfig;
-	elif [[ $input == 7 ]]; then {
-		printf "$yellow";
-		printf "  [1] ZSH Font\n";
-		printf "  [2] ZSH Color\n";
-		# printf "  [3] ZSH Theme\n"; # failed to run on android 
-		printf "  [3] Update ZSH\n";
-		printf "  [4] Uninstall ZSH\n";
-		printf "  [5] EchoMinal Shell Settings\n";
-		printf "  [6] Update EchoMinal\n";
-		printf "  [0] Back $stop \n";
-		input && if [[ $input == 1 ]]; then {
-			$zsh_font
-		} elif [[ $input == 2 ]]; then {
-			$zsh_color;
-		} elif [[ $input == 3 ]]; then {
-			sh $zsh_update;
-		} elif [[ $input == 4 ]]; then {
-			$zsh_uninstall;
-		} elif [[ $input == 5 ]]; then {
-			input_settings;
-		} elif [[ $input == 6 ]]; then {
-			echo "not added the function"
-			sleep 0;
-		} else {
-			echo "invalid";
-		}; fi;
-	}
-	elif [[ $input == 8 ]]; then disk_info;
-	elif [[ $input == 9 ]]; then echo "System Rebooting"; reboot && sleep 0.5; # root access required
-	elif [[ $input == 0 ]]; then $engine;
-	else echo "Wrong KeyWord"; fi; pause;
+function ccli_installation() {
+	printf "$deep_green\n" && printf "Installing CCLi$yellow";
+    echo; figlet "CCLi"; printf "\n $yellow"
+
+    if printf "Installing Configuration : $red"; then {
+		if less ~/.config/ccli/termux.cfg >> ~/.bashrc; then {
+			printf "Bash Install Compleated$stop\n";
+		}; fi
+        printf "Installing Configuration : $red";
+		if less ~/.config/ccli/termux.cfg >> ~/.zshrc; then {
+			printf "Zsh Install Compleated$stop\n";
+		}; fi
+	}; fi;
+
 }
-function about() {
-	printf " $yellow
-EchoMinal Engine
-Termux Manager for$deep_green Android OS $yellow
+function termux_ohmyzsh() {
+# cloning git (termux-ohmyzsh)
+git clone https://github.com/Cabbagec/termux-ohmyzsh.git "$HOME/termux-ohmyzsh" --depth 1
 
-Engine Version   :$red $engine_version $yellow
-Script Version   :$red $script_version $yellow
-Termux           :$blue Termux v0.72 $yellow
-Linux Kernel     :$red `uname -sr` $yellow
+# moving-file
+mv "$HOME/.termux" "$HOME/.termux.bak.$(date +%Y.%m.%d-%H:%M:%S)"
+cp -R "$HOME/termux-ohmyzsh/.termux" "$HOME/.termux"
 
-EchoMinal gives you a simple way to access 
-termux application. 
+# cloning git (oh-my-zsh)
+git clone git://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh" --depth 1
 
-contact to dev ~ farhansadikriduan@gmail.com
-blogspot ~ https://squaredevops.blogspot.com
+# moving/copying-file
+mv "$HOME/.zshrc" "$HOME/.zshrc.bak.$(date +%Y.%m.%d-%H:%M:%S)"
+cp "$HOME/.oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 
-Farhan Sadik
-System Administrator 
-Square Development Group
-$stop \n"; pause 
-}
-function main(){
-	local c; echo 
-	# read -p "`whoami`@linux ~>  " c 		# orgional
-	read -p "`cat $shell_style`" c 			# new modified 
-	case $c in
-		1) terminal ;; 
-		2) hacking_script ;; 
-		3) tools ;; 
-		4) system ;;
-		5) about ;;
-		0) echo && footer ;;
-		*) 
-			echo "Please select between 1 to 5 choice only.";
-			printf "Sorry you've entered wrong options\n"; sleep 1;
-			echo -e "\e[5mPlease Wait.....\e[0m"; sleep 0.5
-			echo -e "$red\e[7mRebooting Engine.....\e[0m" && sleep 0.5; 
-			$engine;
-	# pause
-	esac
+# setting
+sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
+sed -i '1iZSH_THEME="agnoster"' "$HOME/.zshrc"
+echo "alias chcolor='$HOME/.termux/colors.sh'" >> "$HOME/.zshrc"
+echo "alias chfont='$HOME/.termux/fonts.sh'" >> "$HOME/.zshrc"
+
+# cloning-git (zsh-syntax-highlighting)
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
+echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc"
+chsh -s zsh # getting permissions
+echo "oh-my-zsh install complete!\nChoose your color scheme now~" && $HOME/.termux/colors.sh
+echo "Choose your font now~" && $HOME/.termux/fonts.sh
 }
 
-# main logic
-while true
-	do
-		show_menu # display memu
-		main # wait for user input
-done
-exit 0 
+clear && printf "$red"; printf "Script Version$yellow $script_version $red\n";
+printf "Engine ~$deep_green Echominal$yellow $engine_version $stop";
+echo  "
+______________________
+< Installing EchoMinal >
+----------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )--
+                ||----w |
+                ||     ||";
 
-# A Program By, Farhan Sadik 
-# Copyright (C) Square Development Group 
+printf "\n$red" && printf "Installing EchoMinal\n";
+printf "$white" && echo -e "Loading Installation Script"; sleep 1
+printf "$white" && echo -e "\e[5mPlease Wait.....\e[0m"; sleep 1
+
+online_installation;
+offline_installation;
+if cd $HOME; then chmod +x $engine; fi; # getting permission
+termux_ohmyzsh;
+input_settings;
+ccli_installation;
+termux-reload-settings;
+
+printf "$red\n" && echo "Please restart termux!"; printf "$stop\n";
+printf "$deep_green" && printf "EchoMinal$yellow $engine_version\n$stop"
+printf "$deep_green" && printf "Installation Script$yellow $script_version$stop\n$deep_green";
+printf "Created by$red Farhan Sadik$stop\n$deep_green";
+printf "Square Development Group\n"; printf "\n$stop" && exit 0;
+
+# a script by farhan sadik
+# square development group
