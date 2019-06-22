@@ -44,11 +44,13 @@ function UpdateEchominal() {
   echo "Thank You"
 }
 function CommingUpdate() {
-  printf "$blue";
+  printf "$yellow";
   printf "============================\n"
-  printf "New Update Comming Soon.....\n"
-  printf "============================\n$stop"
-
+  printf "$red New Update Comming Soon..... $yellow\n"
+  printf "============================\n$red"
+  printf "1 WIFI Cracking Script\n"
+  printf "2 Weeman Fixes\n $stop"
+  echo
 }
 #UpdateEchominal
 CommingUpdate
