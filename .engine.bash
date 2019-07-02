@@ -3,30 +3,30 @@
 #!/system/bin/bash
 #!/data/data/com.termux/files/usr/bin/bash
 
-set import busybox 
+set import busybox
 set import bash from busybox
 set import netstat from busybox
-set import whois 
+set import whois
 set import p7zip
-set import zshrc 
+set import zshrc
 set import bashrc
-set import vim 
-set import nano 
+set import vim
+set import nano
 set import python from termux-api
 set import pkg-packages from busybox
-set import zip 
-set import git 
+set import zip
+set import git
 
-script_version="1.2.05"
-engine_version="1.0.6 Lapato"
+script_version="1.2.06"       # pre 1.2.05
+engine_version="1.0.7 Lapato" # pre 1.0.6 Lapato
 
 ####################################################################
-# Farhan Sadik (squaredevops.blogspot.com) - May 2019
+# Farhan Sadik (squaredevops.blogspot.com) - June 2019
 ####################################################################
 
 # Define variables
 red='\033[1;91m'; deep_green='\033[0;32m'; green='\033[1;92m'; yellow='\033[1;93m'; blue='\033[1;94m'; white='\033[1;97m'; stop='\e[0m';
-engine=~/./.engine.bash; # the engine modified 
+engine=~/./.engine.bash; # the engine modified
 zsh_color='/data/data/com.termux/files/home/.termux/colors.sh';
 zsh_font='/data/data/com.termux/files/home/.termux/fonts.sh';
 zsh_theme=~/.oh-my-zsh/tools/theme_chooser.sh;
@@ -36,7 +36,7 @@ zsh_uninstall=~/.oh-my-zsh/tools/uninstall.sh;
 loc=~/EchoMinal/; # default clone location
 
 # log files
-log=~/.log/system-status.log; # for track logs 
+log=~/.log/system-status.log; # for track logs
 hacking_install_log=~/.log/hacking_install.log;
 hacking_running_log=~/.log/hacking_running.log;
 
@@ -69,7 +69,7 @@ function disk_info() {
 	  #df -H | grep -vE "^Filesystem|tmpfs|cdrom" | awk '{print $5 " " $6}'
 	fi
 }
-function input() { 
+function input() {
 	echo; echo -n "`cat $shell_style`" && read input; echo;  	# modified
 }
 function footer() {
@@ -79,86 +79,92 @@ function footer() {
 function show_menu(){
 	clear && printf "$red" && figlet "EchoMinal"; printf "$stop";
 	printf "$deep_green" && printf "Termux Manager for Android OS\n"; printf "\n$stop"
-	printf "  [1]  Terminal\n";
-	printf "  [2]  Hacking Scripts\n";
-	printf "  [3]  Tools & Utilities\n";
-	printf "  [4]  System Maintanance\n";
-	printf "  [5]  About\n";
+	# printf "  [1]  Terminal\n";  # removing options [for test]
+	printf "  [1]  Scripts\n";
+	printf "  [2]  Tools & Utilities\n";
+	printf "  [3]  System Maintanance\n";
+	printf "  [4]  About\n";
 	printf "  [0]  Exit\n";
 }
 function terminal() {
-	# this is terminal menu 
-	echo; printf "  [1]  Fish\n"; printf "  [2]  Zsh\n"; printf "  [0]  Back\n"; 
-	input && if [[ $input == 1 ]] ; then fish # fish 3.0.2-1 (arch-linux) 
-		elif [[ $input == 2 ]]; then zsh # zsh 5.7.1-1 (arch-linux) 
-		elif [[ $input == 0 ]]; then $engine # run the engine again 
-		else printf "Wrong Input\n"; 
+	# this is terminal menu
+	echo; printf "  [1]  Fish\n"; printf "  [2]  Zsh\n"; printf "  [0]  Back\n";
+	input && if [[ $input == 1 ]] ; then fish # fish 3.0.2-1 (arch-linux)
+		elif [[ $input == 2 ]]; then zsh # zsh 5.7.1-1 (arch-linux)
+		elif [[ $input == 0 ]]; then $engine # run the engine again
+		else printf "Wrong Input\n";
 	fi; pause; # hey motherfucker's! please do not remove that 'pause' thing (fuck)
+	# because of that fucking ass gives me a lot of pain 
 }
 function hacking_script() {
-	
+
 	#########################################################################
-	# Script Menager 
+	# Script Menager
 	# UNDER DEVELOPMENT - CROSSLINE
 	#########################################################################
- 
-	printf "\n$red|-[ NOTE ] -------------------------------|\n| This function is under development      |\n| Please wait for next release            |\n|_________________________________________|\n$stop"; 
-	echo; # extra echo
-	printf "  [01] Install all scripts\n"; # install all 
-	printf "  [02] Weeman\n";  # run weeman script
-	printf "  [00] Exit\n";
 
-	input; # echo; # those data will store in $HOME/.scripts/
-	case $input in 
-		01)	# Install all of scripts 
-			printf "$red";
-			printf "[*] Changing Location	: "; if cd ~/.scripts/; then printf "OK\n"; fi;
-			printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
-			printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
-			printf "Ready to run.....\n $stop";
+	printf "\n$red|-[ NOTE ] -------------------------------|\n| This function is under development      |\n| Please wait for next release            |\n|_________________________________________|\n$stop";
+	printf "\nDue to security the scripts option has been turn of for a while\n";
+	printf "We'll fix this issue on next update\n"
+	pause
+	#echo; # extra echo
+	# printf "  [01] Install all scripts\n"; # install all
+	# printf "  [02] Weeman\n";  # run weeman script
+	# printf "  [00] Exit\n";
 
-			# installing weeman script 
-			echo && read -p "want to install weeman? (y/n) " WINSTALL; 
-			if [[ $WINSTALL == 'y' ]]; then {
-					echo -e "  \e[5mInstalling Weeman Script\e[0m"
-					pkg install python python2
-					if git clone https://github.com/evait-security/weeman; then printf "Compleate\n"; else printf "Failed\n"; fi;
-				}
-			elif [[ $WINSTALL == 'n' ]]; then { 
-				sleep 0.5
-			}; else {
-				echo "Invalid Options"
-			}; fi; 
-			
+	# input; # echo; # those data will store in $HOME/.scripts/
+	#case $input in
+	#	01)	# Install all of scripts
+	#		printf "$red";
+	#		printf "[*] Changing Location	: "; if cd ~/.scripts/; then printf "OK\n"; fi;
+	#		printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
+	#		printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
+	#		printf "Ready to run.....\n $stop";
+
+	#		# installing weeman script
+	#		echo && read -p "want to install weeman? (y/n) " WINSTALL;
+	#		if [[ $WINSTALL == 'y' ]]; then {
+	#				echo -e "  \e[5mInstalling Weeman Script\e[0m"
+	#				pkg install python python2
+	#				if git clone https://github.com/evait-security/weeman; then printf "Compleate\n"; else printf "Failed\n"; fi;
+	#			}
+	#		elif [[ $WINSTALL == 'n' ]]; then {
+	#			sleep 0.5
+	#		}; else {
+	#			echo "Invalid Options"
+	#		}; fi;
+
 			# printf "[*] Getting Permission	: "; if chmod +x $file; then printf "OK\n"; fi;
-		;;
-		02) # Weeman
-			printf "$red\n"; sleep 0.5
-			printf "[*] Changing Directory	: "; if cd ~/.scripts/weeman/; then printf "OK\n"; fi;
-			printf "[*] Checking Location	: "; if pwd > $hacking_running_log; then printf "OK\n"; fi;
-			printf "[*] Checking FileSystem : "; if ls >> $log; then printf "OK\n"; fi;
-			printf "[*] Getting Permission	: "; if chmod +x weeman.py; then printf "OK\n"; fi;
-			printf "Ready to run.....\n $stop"; sleep 1 
-			./weeman.py # running
-		;;
-		00) 
-			sleep 0;  $engine
-		;;
-		*) 
-			printf "Wrong Input\n";
-		;;
-	esac; pause
+	#	;;
+	#	02) # Weeman
+	#		printf "$red\n"; sleep 0.5
+	#		printf "[*] Changing Directory	: "; if cd ~/.scripts/weeman/; then printf "OK\n"; fi;
+	#		printf "[*] Checking Location	: "; if pwd > $hacking_running_log; then printf "OK\n"; fi;
+	#		printf "[*] Checking FileSystem : "; if ls >> $log; then printf "OK\n"; fi;
+	#		printf "[*] Getting Permission	: "; if chmod +x weeman.py; then printf "OK\n"; fi;
+	#		printf "Ready to run.....\n $stop"; sleep 1
+	#		./weeman.py # running
+	#	;;
+	#	00)
+	#		sleep 0;  $engine
+	#	;;
+	#	*)
+	#		printf "Wrong Input\n";
+	#	;;
+	#esac; pause
 }
 function tools() {
 	# tools_and_utilities function
-	printf "\n  [1] Htop [Monitoring Tools]\n"; 
-	printf "  [2] Vim [Text Editor]\n";
-	printf "  [3] Nano [Text Editor]\n"; 
-	printf "  [4] Python\n"; 
-	printf "  [5] Linux SystemAdmin Tool\n";
-	printf "  [6] Zip Archiver\n";
-	printf "  [7] ISO Compression\n";
-	printf "  [8] Whois Tool\n";
+	printf "\n  [1]  Htop [Monitoring Tools]\n";
+	printf "  [2]  Vim [Text Editor]\n";
+	printf "  [3]  Nano [Text Editor]\n";
+	printf "  [4]  Python\n";
+	printf "  [5]  Linux SystemAdmin Tool\n";
+	printf "  [6]  Zip Archiver\n";
+	printf "  [7]  ISO Compression\n";
+	printf "  [8]  Whois Tool\n";
+	printf "  [9]  Ping Request\n" # new added ###############################
+	printf "  [10] Raed a File\n"; # new added ###############################
 	printf "  [0] Back\n";
 	input; if [[ $input == 1 ]]; then htop;
 	elif [[ $input == 2 ]]; then vim;
@@ -167,20 +173,32 @@ function tools() {
 	elif [[ $input == 5 ]]; then bash ~/.scripts/SysAdmin.bash;
 	elif [[ $input == 6 ]]; then bash ~/.scripts/zipc.bash;
 	elif [[ $input == 7 ]]; then bash ~/.scripts/isoc.bash;
-	elif [[ $input == 8 ]]; 
+	elif [[ $input == 8 ]];
 		then {
 			read -p "enter address : " address; whois $address; pause
 		}
-	elif [[ $input == 0 ]]; then $engine; # run the engine again 
+	elif [[ $input == 9 ]]; then {
+		read -p "enter address : " address;
+		ping $address # -c 5 is not support in android 
+	}
+	elif [[ $input == 10 ]]; then {
+		echo "Note ----- > "
+		echo "Please change your dir using 'cd' command"
+		echo "and then run bat using 'bat <file_name>'"
+		echo 
+		read -p "enter file name : " FnaMe;
+		bat $FnaMe;
+	}
+	elif [[ $input == 0 ]]; then $engine; # run the engine again
 	else {
 		printf "Invalid Options\n" && echo; # footer;
-	}; fi; pause; 
+	}; fi; pause;
 }
 function input_settings() {
     printf "\n$deep_green" && printf "Please enter your short name\n$stop\n";
     read -p "enter user name    : " user && echo $user > $user_name;
     read -p "enter pc/host name : " pc && echo $pc > $pc_name;
-    
+
     printf "\n$deep_green" && printf "Please select your style. This is how it should look like. \n \n";
     printf "$yellow" && printf "[1] Arch Linux Style $stop
     [$red`cat $user_name`$white@$blue`cat $pc_name`$white ~] $ \n";
@@ -201,7 +219,7 @@ function input_settings() {
         echo "Installing ......"; sleep 0.5;
         if echo "[`cat $user_name`@`cat $pc_name` ~] $ " > $shell_style; then {
             echo "Install Compleated";
-        }; fi; 
+        }; fi;
     }; elif [[ $style == 2 ]]; then {
         echo "Installing ......"; sleep 0.5;
         echo "┌─[`cat $user_name`@`cat $pc_name`]─[~]
@@ -244,7 +262,7 @@ function update() {
       printf '%s\n' '       |m|   |m|'; echo
 
       ## bash script run here !
- 	  bash $loc/.scripts/operation.bash; echo 
+ 	  bash $loc/.scripts/operation.bash; echo
 
       printf "${BLUE}%s\n" "Hooray! EchoMinal has been updated or is at the current version."
     }; else {
@@ -257,34 +275,34 @@ function system() {
 	printf "[1]  System Upgrade\n";
 	printf "[2]  Install Package\n";
 	printf "[3]  Uninstall Package\n";
-	printf "[4]  Operating System Info\n"; 
+	printf "[4]  Operating System Info\n";
 	printf "[5]  Hostname & DNS Info\n";
 	printf "[6]  Network Interface\n";
 	printf "[7]$yellow  EchoMinal Settings $stop\n";
-	printf "$red" && printf "[8]  Disk Usage\n"; 
-	printf "[9]  Reboot Device\n"; 
+	printf "$red" && printf "[8]  Disk Usage\n";
+	printf "[9]  Reboot Device\n";
 	printf "[0]  Quit\n $stop";
-	
-	input && if [[ $input == 1 ]]; then 
-		# system upgrade 
+
+	input && if [[ $input == 1 ]]; then
+		# system upgrade
 		echo && sleep 0.5; clear && figlet "SYSMD"; printf "\nChecking for updates..\n";
 		if apt update; then printf "Update Compleate\n"; else printf "failed to update, please try again\n"; fi;
-		printf "\nPreparing to system upgrade.....\n"; 
+		printf "\nPreparing to system upgrade.....\n";
 		if pkg upgrade; then printf "System upgrade has been compleated\n"; else printf "failed to upgrade, please try again\n"; fi;
-	elif [[ $input == 2 ]]; then 
-		# install a package 
+	elif [[ $input == 2 ]]; then
+		# install a package
 		read -p "enter package name ~> " package_name
-		if pkg install $package_name; then printf "Update Compleate\n"; fi; echo; 
-	elif [[ $input == 3 ]]; then 
-		# uninstall a package 
-		echo; if read -p "enter package name ~> " package_name; then pkg remove $package_name; fi; 
-	elif [[ $input == 4 ]]; then screenfetch -n && echo ; 
+		if pkg install $package_name; then printf "Update Compleate\n"; fi; echo;
+	elif [[ $input == 3 ]]; then
+		# uninstall a package
+		echo; if read -p "enter package name ~> " package_name; then pkg remove $package_name; fi;
+	elif [[ $input == 4 ]]; then screenfetch -n && echo ;
 	elif [[ $input == 5 ]]; then netstat;
 	elif [[ $input == 6 ]]; then ifconfig;
 	elif [[ $input == 7 ]]; then {
 		printf "$yellow";
 		printf "  [1] ZSH Font\n";
-		printf "  [2] ZSH Color\n"; 
+		printf "  [2] ZSH Color\n";
 		printf "  [3] Update ZSH\n";
 		printf "  [4] Uninstall ZSH\n";
 		printf "  [5] EchoMinal Shell Settings\n";
@@ -300,7 +318,7 @@ function system() {
 			$zsh_uninstall;
 		} elif [[ $input == 5 ]]; then {
 			input_settings;
-		} elif [[ $input == 6 ]]; then {			
+		} elif [[ $input == 6 ]]; then {
 			if update; then termux-reload-settings; fi;
 		} else {
 			echo "invalid";
@@ -321,33 +339,32 @@ Script Version   :$red $script_version $yellow
 Termux           :$blue Termux v0.72 $yellow
 Linux Kernel     :$red `uname -sr` $yellow
 
-EchoMinal gives you a simple way to access 
-termux application. 
+EchoMinal gives you a simple way to access
+termux application.
 
 contact to dev ~ farhansadikriduan@gmail.com
 blogspot ~ https://squaredevops.blogspot.com
 
 Farhan Sadik
-System Administrator 
 Square Development Group
-$stop \n"; pause 
+$stop \n"; pause
 }
 function main(){
-	local c; echo 
+	local c; echo
 	# read -p "`whoami`@linux ~>  " c 		# orgional
-	read -p "`cat $shell_style`" c 			# new modified 
+	read -p "`cat $shell_style`" c 			# new modified
 	case $c in
-		1) terminal ;; 
-		2) hacking_script ;; 
-		3) tools ;; 
-		4) system ;;
-		5) about ;;
+		# 1) terminal ;; (removed) (on test)
+		1) hacking_script ;;
+		2) tools ;;
+		3) system ;;
+		4) about ;;
 		0) echo && footer ;;
-		*) 
+		*)
 			echo "Please select between 1 to 5 choice only.";
 			printf "Sorry you've entered wrong options\n"; sleep 1;
 			echo -e "\e[5mPlease Wait.....\e[0m"; sleep 0.5
-			echo -e "$red\e[7mRebooting Engine.....\e[0m" && sleep 0.5; 
+			echo -e "$red\e[7mRebooting Engine.....\e[0m" && sleep 0.5;
 			$engine;
 	# pause
 	esac
@@ -359,7 +376,7 @@ while true
 		show_menu # display memu
 		main # wait for user input
 done
-exit 0 
+exit 0
 
-# A Program By, Farhan Sadik 
-# Copyright (C) Square Development Group 
+# A Program By, Farhan Sadik
+# Copyright (C) Square Development Group
