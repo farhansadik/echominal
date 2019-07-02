@@ -3,13 +3,14 @@
 #!/system/bin/bash
 #!/data/data/com.termux/files/usr/bin/bash
 
-script_version="0.0.04"
-engine_version="1.0.6 Marato"
+script_version="0.1"
 
 # log
 loc=~/EchoMinal/; # default clone location
 log=~/.log/operation-status.log; # for track logs
 red='\033[1;91m'; deep_green='\033[0;32m'; green='\033[1;92m'; yellow='\033[1;93m'; blue='\033[1;94m'; white='\033[1;97m'; stop='\e[0m';
+
+# No Need to change/edit that file 
 
 function operation(){
 	printf "Searching Setup File 	: ";

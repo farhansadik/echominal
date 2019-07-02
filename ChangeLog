@@ -1,3 +1,9 @@
+Version 1.0.7 (Marato)
+	*. Removed 'Terminal' menu
+	*. Removed 'Script' options from menu
+	*. New Package has been added 'bat'
+	*. Ping request system has been added
+
 Version 1.0.6 (Marato)
 	*. added zipc and isoc (add back button)
 	*. added update function
