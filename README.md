@@ -79,16 +79,10 @@ engine
 *. Thank's a lot.
 
 # Screenshots
-## EchoMinal Engine
+## EchoMinal Engine (old-version)
 ![EchoMinal Engine](/image/echominal_engine.png?raw=true "Engine")
-## Echominal About
-![EchoMinal About](/image/echominal_about.png?raw=true "About")
-## EchoMinal PC Engine
-![EchoMinal Engine PC](/image/echominal_pc.png?raw=true "pc")
 ## Echominal Installer
 ![EchoMinal Engine PC](/image/echominal_installer.png?raw=true "installer")
-## Showing Packages While Installing Echominal
-![EchoMinal Engine PC](/image/echominal_showing_packages.png?raw=true "packages")
 
 # Contributing
 If you want to contribute to this project and make it better with new ideas, your pull request is very welcomed. If you find any issue just put it in the repository issue section, thank you.
