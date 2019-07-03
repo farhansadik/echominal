@@ -1,3 +1,13 @@
+Version 1.0.8 (Luka)
+	*. Logo Change while sys update
+	*. Add 'bat' as installer
+	*. Added new method of scripts manager on main menu
+	*. Added Weeman Script
+	*. Spinner method installed on updating system 
+	*. Bug fixes of engine
+	*. added 'sudo' super user do 
+	*. added 'aircrack-ng' script
+
 Version 1.0.7 (Marato)
 	*. Removed 'Terminal' menu
 	*. Removed 'Script' options from menu
