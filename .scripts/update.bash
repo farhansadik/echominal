@@ -31,7 +31,7 @@ function UpdateEchominal() {
     copy
 
     # installing packages
-    pkg install bat 
+    apt install bat 
 
     # replaceing engine
     printf "Copying Files     : ";
@@ -52,7 +52,7 @@ function UpdateEchominal() {
         printf "Cloning Git       : "
         if git clone https://gitlab.com/st42/termux-sudo.git; then printf "Done\n"; fi
         printf "Install a dependency needed for sudo\n"
-        if cd termux-sudo; then pkg install ncurses-utils; fi;
+        if cd termux-sudo; then apt install ncurses-utils; fi;
         printf "Execute the following commands to place sudo into the correct directory with the proper permissions and ownership\n";
         cat sudo > /data/data/com.termux/files/usr/bin/sudo
         chmod 700 /data/data/com.termux/files/usr/bin/sudo
@@ -61,6 +61,8 @@ function UpdateEchominal() {
     }; else {
       echo "Invlid Options"
     }; fi
+
+    echo "clear" >> ~/.zshrc
 
     # deleting update script
     printf "Deleting Files    : ";
