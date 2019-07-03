@@ -27,22 +27,27 @@ function UpdateEchominal() {
   # condition
   if [[ $update == 'y' ]]; then {
 
-      # just for fun
-      copy
+    # just for fun
+    copy
 
-      # installing packages
-      pkg install bat 
+    # installing packages
+    pkg install bat 
 
-      # replace engine
-      printf "Copying Files     : ";
-      if cd $loc && cp -rv .engine.bash $HOME >> $log; then printf "Done\n"; fi;
+    # replaceing engine
+    printf "Copying Files     : ";
+    if cd $loc && cp -rv .engine.bash $HOME >> $log; then printf "Done\n"; fi;
 
-      # replace ccli-configuration
-      if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
+    # replaceing ccli-configuration
+    printf "Copying Files     : ";
+    if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
+      
+    # replaceing bashrc
+    printf "Copying Files     : ";
+    if cd $loc && cp -rv .bashrc $HOME >> $log; then printf "Done\n"; fi;
 
-      # deleting update script
-      printf "Deleting Files    : ";
-      if rm -rv ~/.scripts/update.bash >> $log;  then printf "Done\n"; fi;
+    # deleting update script
+    printf "Deleting Files    : ";
+    if rm -rv ~/.scripts/update.bash >> $log;  then printf "Done\n"; fi;
 
   }; elif [[ $update == 'n' ]]; then {
       echo "You can update it manually letter"
