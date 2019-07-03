@@ -187,7 +187,7 @@ function hacking_script() {
 				# run
 				printf "$yellow"
 				printf "to run$blue Aircrack-ng$stop close the engine\n"
-				printf "and run$blue Aircrack-ng$stop on terminal"
+				printf "and run$blue Aircrack-ng$stop from terminal\n"
 				printf "$stop"
 			}; else {
 				echo "Invalid Options"

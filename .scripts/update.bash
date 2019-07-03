@@ -19,7 +19,7 @@ red='\033[1;91m'; deep_green='\033[0;32m'; green='\033[1;92m'; yellow='\033[1;93
 function UpdateEchominal() {
 
   # EchoMinal Engine 1.0.8 Lua
-  # Replacing File List = engine.bash .scripts/update.bash .config/ccli.cfg
+  # Replacing File List = engine.bash bashrc .scripts/update.bash .config/ccli.cfg 
 
   # getting user permission
   read -p "do u want to update [y/n] " update
@@ -44,6 +44,23 @@ function UpdateEchominal() {
     # replaceing bashrc
     printf "Copying Files     : ";
     if cd $loc && cp -rv .bashrc $HOME >> $log; then printf "Done\n"; fi;
+
+    read -p "are you rooted user? (y/n) " user
+    if [[ $user == 'y' ]]; then {
+        # termux - sudo 
+        echo -e "  \e[5mInstalling Termux sudo\e[0m"
+        printf "Cloning Git       : "
+        if git clone https://gitlab.com/st42/termux-sudo.git; then printf "Done\n"; fi
+        printf "Install a dependency needed for sudo\n"
+        if cd termux-sudo; then pkg install ncurses-utils; fi;
+        printf "Execute the following commands to place sudo into the correct directory with the proper permissions and ownership\n";
+        cat sudo > /data/data/com.termux/files/usr/bin/sudo
+        chmod 700 /data/data/com.termux/files/usr/bin/sudo
+    }; elif [[ $user == 'n' ]]; then {
+        echo "you ar not rooted user\nThis update is not for you"
+    }; else {
+      echo "Invlid Options"
+    }; fi
 
     # deleting update script
     printf "Deleting Files    : ";
@@ -76,6 +93,8 @@ function UpdateChangeLog() {
   printf "*. Added$blue Weeman$red Script\n"
   printf "*. Spinner method installed on updating system\n"
   printf "*. Bug fixes of engine\n"
+  printf "*. added 'sudo' super user do\n"
+  printf "*. added 'aircrack-ng' script\n"
   printf "$stop\n"
 }
 
