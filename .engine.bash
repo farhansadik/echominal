@@ -18,7 +18,7 @@ set import sudo # sudo - for termux
 set import root  # root - /root dir 
 set import su # super user 
 
-script_version="1.3.0"    # pre 1.2.07
+script_version="1.3.1"    # pre 1.2.07
 engine_version="1.0.8 Lua" # pre 1.0.7 Lapato
 
 ####################################################################
@@ -175,7 +175,8 @@ function hacking_script() {
 				echo && read -p "want to install Aircrack-ng? (y/n) " AIRINSTALL;
 				if [[ $AIRINSTALL == 'y' ]]; then {
 						echo -e "  \e[5mInstalling Aircrack-ng\e[0m"
-						pkg install root-repo aircrack-ng					
+						pkg install root-repo 
+						pkg install aircrack-ng					
 					}
 				elif [[ $AIRINSTALL == 'n' ]]; then {
 					sleep 0.5 && echo "bye bye";
@@ -184,19 +185,10 @@ function hacking_script() {
 				}; fi;
 			}; elif [[ $input == 2 ]]; then {
 				# run
-				printf "$red"
-				printf "Searching for packages$yellow\n"
-				# searching for packages
-				if dpkg --list | grep python >> $hacking_running_log; then {
-					if sudo aircrack-ng; then {
-						echo "If it failes to run then run is manually"
-					}; else {
-						echo "If it failes to run then run is manually"
-					}; fi
-					# if it failed to run then run it manually
-				}; else {
-					printf "sorry, required packages not found$stop\n"
-				}; fi
+				printf "$yellow"
+				printf "to run$blue Aircrack-ng$stop close the engine\n"
+				printf "and run$blue Aircrack-ng$stop on terminal"
+				printf "$stop"
 			}; else {
 				echo "Invalid Options"
 			}; fi;
