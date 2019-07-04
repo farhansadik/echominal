@@ -128,5 +128,5 @@ function spin() {
 pWait=('Please Wait' 'pLease Wait' 'plEase Wait' 'pleAse Wait' 'pleaSe Wait' 'pleasE Wait' 'please Wait' 'please wAit' 'please waIt' 'please waiT')
 
 if UpdateChangeLog; then {
-  sleep 0.5 #UpdateEchominal; 
+  UpdateEchominal; 
 }; fi;
