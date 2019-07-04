@@ -34,13 +34,21 @@ function UpdateEchominal() {
     # apt install bat 
 
     # replaceing engine
-    printf "Copying Files     : ";
+    printf "Replacing Engine  : ";
     if cd $loc && cp -rv .engine.bash $HOME >> $log; then printf "Done\n"; fi;
 
     # replaceing ccli-configuration
-     printf "Copying Files     : ";
-     if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
+    printf "Replacing CCLI    : ";
+    if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
       
+    # removing messages
+    printf "Replacing Engine  : ";
+    if echo "clear; figlet 'Termux';" >> ~/.zshrc; then {
+        source ~/.zshrc; printf "Done\n";
+    }; else {
+        echo "Failed to fixing zshrc"
+    }; fi;
+
     # replaceing bashrc
     # printf "Copying Files     : ";
     # if cd $loc && cp -rv .bashrc $HOME >> $log; then printf "Done\n"; fi;
@@ -62,9 +70,6 @@ function UpdateEchominal() {
     }; else {
       echo "Invlid Options"
     }; fi
-
-    echo "clear; figlet 'Termux';" >> ~/.zshrc;
-    source ~/.zshrc
 
     # deleting update script
     printf "Deleting Files    : ";
@@ -128,5 +133,5 @@ function spin() {
 pWait=('Please Wait' 'pLease Wait' 'plEase Wait' 'pleAse Wait' 'pleaSe Wait' 'pleasE Wait' 'please Wait' 'please wAit' 'please waIt' 'please waiT')
 
 if UpdateChangeLog; then {
-  UpdateEchominal; 
+    UpdateEchominal; 
 }; fi;
