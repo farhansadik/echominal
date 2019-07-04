@@ -3,22 +3,23 @@
 #!/system/bin/bash
 #!/data/data/com.termux/files/usr/bin/bash
 
-set import busybox
-set import bash from busybox
-set import netstat from busybox
-set import whois
-set import p7zip
-set import zshrc
-set import bashrc
-set import vim
-set import nano
-set import python from termux-api
-set import pkg-packages from busybox
-set import zip
-set import git
+set import busybox # busybox for rooted user 
+set import bash from busybox # implement bash 
+set import netstat from busybox # netstat - networking tool
+set import whois # whois - provide the domain information
+set import p7zip # 7zip - used for unarchive iso file
+set import vim # vim - command line based text editor 
+set import nano # nano - command line based text editor 
+set import python from termux-api # python 
+set import zip # zip - archiver 
+set import git # git - git repo
+set import bat # bat - for awesome view of file (instead of 'less' & 'cat' command)
+set import sudo # sudo - for termux 
+set import root  # root - /root dir 
+set import su # super user 
 
-script_version="1.2.06"       # pre 1.2.05
-engine_version="1.0.7 Lapato" # pre 1.0.6 Lapato
+script_version="1.3.2"    # pre 1.2.07
+engine_version="1.0.8 Lua" # pre 1.0.7 Lapato
 
 ####################################################################
 # Farhan Sadik (squaredevops.blogspot.com) - June 2019
@@ -45,19 +46,22 @@ user_name=~/.config/echominal/user_name.cfg;
 pc_name=~/.config/echominal/pc_name.cfg;
 shell_style=~/.config/echominal/shell_style.cfg;
 
-# Purpose: Display pause prompt
 function pause(){
+	# Purpose: Display pause prompt
 	local message="$@"
 	[ -z $message ] && message="Press [Enter] key to continue..."
 	read -p "$message" readEnterKey
 }
 function write_header(){
+	# just a header 
 	local h="$@"
 	echo "------------------------------------------------------";
 	echo " ${h}";
 	echo "------------------------------------------------------";
 }
 function disk_info() {
+	# this function will provide info inside of your device 
+	# root required 
 	usep=$(echo $output | awk '{ print $1}' | cut -d'%' -f1)
 	  partition=$(echo $output | awk '{print $2}')
 	write_header " Disk Usage Info"
@@ -70,7 +74,7 @@ function disk_info() {
 	fi
 }
 function input() {
-	echo; echo -n "`cat $shell_style`" && read input; echo;  	# modified
+	echo; echo -n "`cat $shell_style`" && read input; echo; 
 }
 function footer() {
 	printf "$deep_green" && printf "EchoMinal $engine_version\nCreated by Farhan Sadik\n $stop";
@@ -79,22 +83,11 @@ function footer() {
 function show_menu(){
 	clear && printf "$red" && figlet "EchoMinal"; printf "$stop";
 	printf "$deep_green" && printf "Termux Manager for Android OS\n"; printf "\n$stop"
-	# printf "  [1]  Terminal\n";  # removing options [for test]
 	printf "  [1]  Scripts\n";
 	printf "  [2]  Tools & Utilities\n";
 	printf "  [3]  System Maintanance\n";
 	printf "  [4]  About\n";
 	printf "  [0]  Exit\n";
-}
-function terminal() {
-	# this is terminal menu
-	echo; printf "  [1]  Fish\n"; printf "  [2]  Zsh\n"; printf "  [0]  Back\n";
-	input && if [[ $input == 1 ]] ; then fish # fish 3.0.2-1 (arch-linux)
-		elif [[ $input == 2 ]]; then zsh # zsh 5.7.1-1 (arch-linux)
-		elif [[ $input == 0 ]]; then $engine # run the engine again
-		else printf "Wrong Input\n";
-	fi; pause; # hey motherfucker's! please do not remove that 'pause' thing (fuck)
-	# because of that fucking ass gives me a lot of pain 
 }
 function hacking_script() {
 
@@ -106,52 +99,152 @@ function hacking_script() {
 	printf "\n$red|-[ NOTE ] -------------------------------|\n| This function is under development      |\n| Please wait for next release            |\n|_________________________________________|\n$stop";
 	printf "\nDue to security the scripts option has been turn of for a while\n";
 	printf "We'll fix this issue on next update\n"
-	pause
-	#echo; # extra echo
-	# printf "  [01] Install all scripts\n"; # install all
-	# printf "  [02] Weeman\n";  # run weeman script
-	# printf "  [00] Exit\n";
+	#pause
+	echo; # extra echo
 
-	# input; # echo; # those data will store in $HOME/.scripts/
-	#case $input in
-	#	01)	# Install all of scripts
-	#		printf "$red";
-	#		printf "[*] Changing Location	: "; if cd ~/.scripts/; then printf "OK\n"; fi;
-	#		printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
-	#		printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
-	#		printf "Ready to run.....\n $stop";
+	 printf "  [1] Weeman\n";
+	 printf "  [2] Hakku Framework\n"; 
+	 printf "  [3] Aircrack-ng\n";
+	 printf "  [*] Exit\n";
 
-	#		# installing weeman script
-	#		echo && read -p "want to install weeman? (y/n) " WINSTALL;
-	#		if [[ $WINSTALL == 'y' ]]; then {
-	#				echo -e "  \e[5mInstalling Weeman Script\e[0m"
-	#				pkg install python python2
-	#				if git clone https://github.com/evait-security/weeman; then printf "Compleate\n"; else printf "Failed\n"; fi;
-	#			}
-	#		elif [[ $WINSTALL == 'n' ]]; then {
-	#			sleep 0.5
-	#		}; else {
-	#			echo "Invalid Options"
-	#		}; fi;
+	input;
+	case $input in 
+		1) # weeman 
+			echo "[1] Install\Update Script";
+			echo "[2] Run Script";
+			echo "[*] Exit"; input;  #geeting user input 
+			if [[ $input == 1 ]]; then {
 
-			# printf "[*] Getting Permission	: "; if chmod +x $file; then printf "OK\n"; fi;
-	#	;;
-	#	02) # Weeman
-	#		printf "$red\n"; sleep 0.5
-	#		printf "[*] Changing Directory	: "; if cd ~/.scripts/weeman/; then printf "OK\n"; fi;
-	#		printf "[*] Checking Location	: "; if pwd > $hacking_running_log; then printf "OK\n"; fi;
-	#		printf "[*] Checking FileSystem : "; if ls >> $log; then printf "OK\n"; fi;
-	#		printf "[*] Getting Permission	: "; if chmod +x weeman.py; then printf "OK\n"; fi;
-	#		printf "Ready to run.....\n $stop"; sleep 1
-	#		./weeman.py # running
-	#	;;
-	#	00)
-	#		sleep 0;  $engine
-	#	;;
-	#	*)
-	#		printf "Wrong Input\n";
-	#	;;
-	#esac; pause
+				# install
+				printf "$red";
+				printf "[*] Changing Directory  : "; if cd ~/.scripts/; then printf "OK\n"; fi;
+				printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
+				printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
+				printf "Ready to install.....\n $stop";
+
+				# installing weeman script
+				echo && read -p "want to install weeman? (y/n) " WINSTALL;
+				if [[ $WINSTALL == 'y' ]]; then {
+						echo -e "  \e[5mInstalling Weeman Script\e[0m"
+						apt install python python2
+						if git clone https://github.com/evait-security/weeman; then printf "Compleate\n"; else printf "Failed\n"; fi;
+					}
+				elif [[ $WINSTALL == 'n' ]]; then {
+					sleep 0.5 && echo "bye bye";
+				}; else {
+					echo "Invalid Options";
+				}; fi;
+			}; elif [[ $input == 2 ]]; then {
+				# run
+				printf "$red"
+				printf "Searching for packages$yellow\n"
+				# searching for packages
+				if dpkg --list | grep python2 >> $hacking_running_log; then {
+					printf "python2 has been found$red\n"
+					printf "[*] Changing Directory	: "; if cd ~/.scripts/weeman/; then printf "OK\n"; fi;
+					printf "[*] Checking Location	: "; if pwd > $hacking_running_log; then printf "OK\n"; fi;
+					printf "[*] Checking FileSystem : "; if ls >> $log; then printf "OK\n"; fi;
+					printf "[*] Getting Permission	: "; if chmod +x weeman.py; then printf "OK\n"; fi;
+					printf "Ready to run.....\n $stop"; sleep 1
+					./weeman.py # running
+				}; elif [[ $input == * ]]; then {
+					$engine
+				}; else {
+					printf "sorry, required packages not found$stop\n"
+				}; fi
+			}; else {
+				echo "Invalid Options"
+			}; fi;
+		;;
+		2) # hakku framework	
+			echo "you mast have root permission for this"; echo 
+			echo "[1] Install\Update Script";
+			echo "[2] Run Script";
+			echo "[*] Exit"; input;  #geeting user input 
+			if [[ $input == 1 ]]; then {
+				
+				# install
+				printf "$red";
+				printf "[*] Changing Directory  : "; if cd ~/.scripts/; then printf "OK\n"; fi;
+				printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
+				printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
+				printf "Ready to install.....\n $stop";
+
+				# installing hakku framework script
+				echo && read -p "want to install hakku? (y/n) " hakku;
+				if [[ $hakku == 'y' ]]; then {
+						echo -e "  \e[5mInstalling Hakku Framework\e[0m"
+						apt install python
+						if git clone https://github.com/4shadoww/hakkuframework; then printf "Compleate\n"; else printf "Failed\n"; fi;
+					}
+				elif [[ $hakku == 'n' ]]; then {
+					sleep 0.5 && echo "bye bye";
+				}; else {
+					echo "Invalid Options";
+				}; fi;
+
+			}; elif [[ $input == 2 ]]; then {
+				
+				# run
+				printf "[*] Changing Directory	: "; if cd ~/.scripts/hakkuframework/; then printf "OK\n"; fi;
+				printf "[*] Checking Location	: "; if pwd > $hacking_running_log; then printf "OK\n"; fi;
+				printf "[*] Checking FileSystem : "; if ls >> $log; then printf "OK\n"; fi;
+				#printf "[*] Getting Permission	: "; if chmod +x hakku.py; then printf "OK\n"; fi;
+				printf "Ready to run.....\n $stop"; sleep 1
+				clear; python hakku # running
+
+			}; elif [[ $input == * ]]; then {
+				$engine
+			}; else {
+				echo "Invalid Options"
+			}; fi;
+
+		;;
+		3) # aircrack ng
+			echo "you mast have root permission for this"; echo; 
+			echo "[1] Install\Update Script";
+			echo "[2] Run Script";
+			echo "[*] Exit"; input;  #geeting user input 
+			if [[ $input == 1 ]]; then {
+				
+				# install
+				printf "$red";
+				printf "[*] Changing Directory  : "; if cd ~/.scripts/; then printf "OK\n"; fi;
+				printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
+				printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
+				printf "Ready to install.....\n $stop";
+
+				# installing weeman script
+				echo && read -p "want to install Aircrack-ng? (y/n) " AIRINSTALL;
+				if [[ $AIRINSTALL == 'y' ]]; then {
+						echo -e "  \e[5mInstalling Aircrack-ng\e[0m"
+						apt install root-repo 
+						apt install aircrack-ng					
+					}
+				elif [[ $AIRINSTALL == 'n' ]]; then {
+					sleep 0.5 && echo "bye bye";
+				}; else {
+					echo "Invalid Options";
+				}; fi;
+			}; elif [[ $input == 2 ]]; then {
+				# run
+				printf "$yellow"
+				printf "to run$blue Aircrack-ng$stop close the engine\n"
+				printf "and run$blue Aircrack-ng$stop from terminal\n"
+				printf "$stop"
+			}; elif [[ $input == * ]]; then {
+				$engine
+			}; else {
+				echo "Invalid Options"
+			}; fi;
+		;;
+		*)
+			sleep 0; $engine
+		;;
+		*)
+			printf "Wrong Input\n";
+		;;
+	esac; pause # pause - re run the engine 
 }
 function tools() {
 	# tools_and_utilities function
@@ -163,9 +256,9 @@ function tools() {
 	printf "  [6]  Zip Archiver\n";
 	printf "  [7]  ISO Compression\n";
 	printf "  [8]  Whois Tool\n";
-	printf "  [9]  Ping Request\n" # new added ###############################
-	printf "  [10] Raed a File\n"; # new added ###############################
-	printf "  [0] Back\n";
+	printf "  [9]  Ping Request\n";
+	printf "  [10] Raed a File\n"; 
+	printf "  [*] Back\n";
 	input; if [[ $input == 1 ]]; then htop;
 	elif [[ $input == 2 ]]; then vim;
 	elif [[ $input == 3 ]]; then nano;
@@ -173,15 +266,18 @@ function tools() {
 	elif [[ $input == 5 ]]; then bash ~/.scripts/SysAdmin.bash;
 	elif [[ $input == 6 ]]; then bash ~/.scripts/zipc.bash;
 	elif [[ $input == 7 ]]; then bash ~/.scripts/isoc.bash;
-	elif [[ $input == 8 ]];
-		then {
-			read -p "enter address : " address; whois $address; pause
+	elif [[ $input == 8 ]]; then {
+		# whois 
+			read -p "enter address : " address; 
+			whois $address; pause
 		}
 	elif [[ $input == 9 ]]; then {
+		# ping request 
 		read -p "enter address : " address;
 		ping $address # -c 5 is not support in android 
 	}
 	elif [[ $input == 10 ]]; then {
+		# bat 
 		echo "Note ----- > "
 		echo "Please change your dir using 'cd' command"
 		echo "and then run bat using 'bat <file_name>'"
@@ -189,12 +285,13 @@ function tools() {
 		read -p "enter file name : " FnaMe;
 		bat $FnaMe;
 	}
-	elif [[ $input == 0 ]]; then $engine; # run the engine again
+	elif [[ $input == * ]]; then $engine; # run the engine again
 	else {
 		printf "Invalid Options\n" && echo; # footer;
 	}; fi; pause;
 }
 function input_settings() {
+	# settings for echominal 
     printf "\n$deep_green" && printf "Please enter your short name\n$stop\n";
     read -p "enter user name    : " user && echo $user > $user_name;
     read -p "enter pc/host name : " pc && echo $pc > $pc_name;
@@ -233,6 +330,7 @@ function input_settings() {
     }; fi && printf "\n$stop";
 }
 function update() {
+	# the update function 
     if which tput >/dev/null 2>&1; then {
         ncolors=$(tput colors)
     }; fi
@@ -244,27 +342,28 @@ function update() {
     }; fi
 
     printf "${BLUE}%s${NORMAL}\n" "Updating Engine";
-    if cd $loc && git pull origin master; then {
+    # checking for updates
+    if sleep 1; then {
 		# git pull --rebase --stat origin master
+		# cd $loc && git pull origin master
       printf '%s' "$GREEN"
       printf '%s\n' '_____________________'
       printf '%s\n' '< Upgrading EchoMinal >'
       printf '%s\n' '---------------------'
-      printf '%s\n' '\     /\  ___  /\'
-      printf '%s\n' ' \   // \/   \/ \\'
-      printf '%s\n' '    ((    O O    ))'
-      printf '%s\n' '     \\ /     \ //'
-      printf '%s\n' '      \/  | |  \/'
-      printf '%s\n' '       |  | |  |'
-      printf '%s\n' '       |  | |  |'
-      printf '%s\n' '       |   o   |'
-      printf '%s\n' '       | |   | |'
-      printf '%s\n' '       |m|   |m|'; echo
+		printf '%s\n' '\'
+		printf '%s\n' ' \';
+		printf '%s\n' '       .--.'
+		printf '%s\n' '      |o_o |'
+		printf '%s\n' '      |:_/ |'
+		printf '%s\n' '     //   \ \'
+		printf '%s\n' '    (|     | )'
+		printf '%s\n' '   /"\_   _/"\'
+		printf '%s\n' '   \___)=(___/'; echo;
 
-      ## bash script run here !
+      ## update script run here !
  	  bash $loc/.scripts/operation.bash; echo
 
-      printf "${BLUE}%s\n" "Hooray! EchoMinal has been updated or is at the current version."
+      printf "$red\n"; printf "Hooray! EchoMinal has been updated or is at the current version.\n";
     }; else {
       printf "${RED}%s${NORMAL}\n" 'There was an error updating. Try again later?'
     }; fi
@@ -321,7 +420,7 @@ function system() {
 		} elif [[ $input == 6 ]]; then {
 			if update; then termux-reload-settings; fi;
 		} else {
-			echo "invalid";
+			echo "invalid options";
 		}; fi;
 	}
 	elif [[ $input == 8 ]]; then disk_info;
@@ -351,10 +450,8 @@ $stop \n"; pause
 }
 function main(){
 	local c; echo
-	# read -p "`whoami`@linux ~>  " c 		# orgional
-	read -p "`cat $shell_style`" c 			# new modified
+	read -p "`cat $shell_style`" c
 	case $c in
-		# 1) terminal ;; (removed) (on test)
 		1) hacking_script ;;
 		2) tools ;;
 		3) system ;;
