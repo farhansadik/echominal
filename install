@@ -3,11 +3,11 @@
 #!/usr/bin/env bash
 #!/data/data/com.termux/files/usr/bin/bash
 
-set import busybox
-set import bash from busybox
+set import busybox # busybox for basic shell 
+set import bash from busybox # implement from busybox
 
-script_version='1.3.08';
-engine_version="1.0.7 Marato"
+script_version='1.3.09';       # pre - 1.3.08
+engine_version="1.0.8 Lua";    # pre - 1.0.7 Marato
 
 # Define variables
 red='\033[1;91m'; deep_green='\033[0;32m'; green='\033[1;92m'; yellow='\033[1;93m'; blue='\033[1;94m'; white='\033[1;97m'; stop='\e[0m';
@@ -51,7 +51,7 @@ online_installation() {
     # installing packages
     echo -e "\e[1m\e[32m==> \e[97mInstalling Packages......\e[0m";
     printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 1 ....\e[0m\n";
-    pkg install screenfetch htop termux-api p7zip vim bat; #root-repo (is not needed);
+    pkg install screenfetch htop termux-api p7zip vim bat root-repo; #(is not needed);
     printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 2 ....\e[0m\n";
     pkg install figlet zip unzip zsh nano # required packages
 }
@@ -108,6 +108,25 @@ function ccli_installation() {
 	}; fi;
 
 }
+function termux_sudo() {
+	# termux - sudo 
+	read -p "are you rooted user? (y/n) " user
+    if [[ $user == 'y' ]]; then {
+        echo -e "  \e[5mInstalling Termux sudo\e[0m"
+        printf "Cloning Git       : "
+        if git clone https://gitlab.com/st42/termux-sudo.git; then printf "Done\n"; fi
+        printf "Install a dependency needed for sudo\n"
+        if cd termux-sudo; then apt install ncurses-utils; fi;
+        printf "Execute the following commands to place sudo into the correct directory with the proper permissions and ownership\n";
+        cat sudo > /data/data/com.termux/files/usr/bin/sudo
+        chmod 700 /data/data/com.termux/files/usr/bin/sudo
+    }; elif [[ $user == 'n' ]]; then {
+        echo "you ar not rooted user";
+        echo "This update is not for you";
+    }; else {
+      echo "Invlid Options"
+    }; fi
+}
 function termux_ohmyzsh() {
 # cloning git (termux-ohmyzsh)
 git clone https://github.com/Cabbagec/termux-ohmyzsh.git "$HOME/termux-ohmyzsh" --depth 1
@@ -153,13 +172,14 @@ printf "\n$red" && printf "Installing EchoMinal\n";
 printf "$white" && echo -e "Loading Installation Script"; sleep 1
 printf "$white" && echo -e "\e[5mPlease Wait.....\e[0m"; sleep 1
 
-online_installation;
-offline_installation;
+online_installation; # this is for packages installation
+offline_installation; # cut-copy-paste files 
 if cd $HOME; then chmod +x $engine; fi; # getting permission
-termux_ohmyzsh;
-input_settings;
-ccli_installation;
-termux-reload-settings;
+termux_ohmyzsh; # for styling termux with zsh 
+input_settings; # for shell style
+ccli_installation; # ccli configuration
+termux_sudo; #  sudo method for rooted user 
+termux-reload-settings; # reload settings 
 
 printf "$red\n" && echo "Please restart termux!"; printf "$stop\n";
 printf "$deep_green" && printf "EchoMinal$yellow $engine_version\n$stop"
