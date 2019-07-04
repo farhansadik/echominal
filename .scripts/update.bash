@@ -3,7 +3,7 @@
 #!/system/bin/bash
 #!/data/data/com.termux/files/usr/bin/bash
 
-script_version="0.1.01"    # prev - 0.0.08
+script_version="0.1.02"    # prev - 0.0.08
 engine_version="1.0.8 Lua" # prev - 1.0.7 Marato
 
 # log
@@ -31,19 +31,19 @@ function UpdateEchominal() {
     copy
 
     # installing packages
-    apt install bat 
+    # apt install bat 
 
     # replaceing engine
     printf "Copying Files     : ";
     if cd $loc && cp -rv .engine.bash $HOME >> $log; then printf "Done\n"; fi;
 
     # replaceing ccli-configuration
-    printf "Copying Files     : ";
-    if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
+    # printf "Copying Files     : ";
+    # if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
       
     # replaceing bashrc
-    printf "Copying Files     : ";
-    if cd $loc && cp -rv .bashrc $HOME >> $log; then printf "Done\n"; fi;
+    # printf "Copying Files     : ";
+    # if cd $loc && cp -rv .bashrc $HOME >> $log; then printf "Done\n"; fi;
 
     read -p "are you rooted user? (y/n) " user
     if [[ $user == 'y' ]]; then {
@@ -62,7 +62,8 @@ function UpdateEchominal() {
       echo "Invlid Options"
     }; fi
 
-    echo "clear" >> ~/.zshrc
+    echo "clear; figlet 'Termux';" >> ~/.zshrc;
+    source ~/.zshrc
 
     # deleting update script
     printf "Deleting Files    : ";
@@ -89,14 +90,14 @@ function UpdateChangeLog() {
   printf "============================$red\n"
   printf "      EchoMinal 1.0.8 $yellow\n"
   printf "============================\n$red"
-  printf "*. Logo Change while system update\n"
-  printf "*. Added$blue 'bat'$red as installer\n"
-  printf "*. Added new method of scripts manager on main menu\n"
-  printf "*. Added$blue Weeman$red Script\n"
+  printf "*. New method of scripts manager on main menu\n"
   printf "*. Spinner method installed on updating system\n"
   printf "*. Bug fixes of engine\n"
-  printf "*. added 'sudo' super user do\n"
-  printf "*. added 'aircrack-ng' script\n"
+  printf "*. Added$blue 'bat'$red as installer\n"
+  printf "*. Added$blue 'Weeman'$red Script\n"
+  printf "*. added$blue 'sudo'$red super user do\n"
+  printf "*. added$blue 'aircrack-ng'$red script\n"
+  printf "*. added$blue 'hakku framwework$red\n"
   printf "$stop\n"
 }
 
@@ -124,4 +125,7 @@ function spin() {
 }
 
 pWait=('Please Wait' 'pLease Wait' 'plEase Wait' 'pleAse Wait' 'pleaSe Wait' 'pleasE Wait' 'please Wait' 'please wAit' 'please waIt' 'please waiT')
-if UpdateChangeLog; then UpdateEchominal; fi;
+
+if UpdateChangeLog; then {
+  sleep 0.5 #UpdateEchominal; 
+}; fi;
