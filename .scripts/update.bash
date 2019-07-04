@@ -38,8 +38,8 @@ function UpdateEchominal() {
     if cd $loc && cp -rv .engine.bash $HOME >> $log; then printf "Done\n"; fi;
 
     # replaceing ccli-configuration
-    # printf "Copying Files     : ";
-    # if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
+     printf "Copying Files     : ";
+     if cd $loc && cp -rv .config/ccli/termux.cfg $HOME/.config/ccli >> $log; then printf "Done\n"; fi;
       
     # replaceing bashrc
     # printf "Copying Files     : ";
@@ -57,7 +57,8 @@ function UpdateEchominal() {
         cat sudo > /data/data/com.termux/files/usr/bin/sudo
         chmod 700 /data/data/com.termux/files/usr/bin/sudo
     }; elif [[ $user == 'n' ]]; then {
-        echo "you ar not rooted user\nThis update is not for you"
+        echo "you ar not rooted user";
+        echo "This update is not for you";
     }; else {
       echo "Invlid Options"
     }; fi
