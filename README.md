@@ -26,7 +26,7 @@ Termux is an Android terminal emulator and Linux environment app that works dire
   * Termux-Api [download](https://play.google.com/store/apps/details?id=com.termux.api&hl=en)
   * Android **Root** Access 
 
-### Installation Method
+## Installation Method
 > Just **copy** and **paste** those commands, one by one
 ```
 pkg install git 
@@ -51,10 +51,10 @@ E-m@il: farhansadikriduan@gmail.com <br>
 bug reports to github or here: farhansadikriduan@gmail.com <br>
 
 
-# Screenshots
-## EchoMinal Engine (old-version)
+## Screenshots
+### EchoMinal Engine (old-version)
 ![EchoMinal Engine](/image/echominal_engine.png?raw=true "Engine")
-## Echominal Installer (old-version)
+### Echominal Installer (old-version)
 ![EchoMinal Engine PC](/image/echominal_installer.png?raw=true "installer")
 
 # Contributing
