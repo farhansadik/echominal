@@ -6,9 +6,11 @@ Version 1.0.8 (Luka)
 	*. Spinner method installed on updating system 
 	*. Bug fixes of engine
 	*. New CCLi updates
+	*. New Insallation Updates
 	*. added 'sudo' super user do 
 	*. added 'aircrack-ng' script
 	*. added 'hakku framwework' 
+	*. added 'root-repo' as installer 
 
 Version 1.0.7 (Marato)
 	*. Removed 'Terminal' menu
