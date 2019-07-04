@@ -18,7 +18,7 @@ set import sudo # sudo - for termux
 set import root  # root - /root dir 
 set import su # super user 
 
-script_version="1.3.1"    # pre 1.2.07
+script_version="1.3.2"    # pre 1.2.07
 engine_version="1.0.8 Lua" # pre 1.0.7 Lapato
 
 ####################################################################
@@ -111,7 +111,8 @@ function hacking_script() {
 	case $input in 
 		1) # weeman 
 			echo "[1] Install\Update Script";
-			echo "[2] Run Script"; input; # getting user input 
+			echo "[2] Run Script";
+			echo "[*] Exit"; input;  #geeting user input 
 			if [[ $input == 1 ]]; then {
 
 				# install
@@ -125,7 +126,7 @@ function hacking_script() {
 				echo && read -p "want to install weeman? (y/n) " WINSTALL;
 				if [[ $WINSTALL == 'y' ]]; then {
 						echo -e "  \e[5mInstalling Weeman Script\e[0m"
-						pkg install python python2
+						apt install python python2
 						if git clone https://github.com/evait-security/weeman; then printf "Compleate\n"; else printf "Failed\n"; fi;
 					}
 				elif [[ $WINSTALL == 'n' ]]; then {
@@ -146,6 +147,8 @@ function hacking_script() {
 					printf "[*] Getting Permission	: "; if chmod +x weeman.py; then printf "OK\n"; fi;
 					printf "Ready to run.....\n $stop"; sleep 1
 					./weeman.py # running
+				}; elif [[ $input == * ]]; then {
+					$engine
 				}; else {
 					printf "sorry, required packages not found$stop\n"
 				}; fi
@@ -154,14 +157,54 @@ function hacking_script() {
 			}; fi;
 		;;
 		2) # hakku framework	
-			echo "Not installed yet!"; 
-			# echo "[1] Install\Update Script";
-			# echo "[2] Run Script"; echo 
+			echo "you mast have root permission for this"; echo 
+			echo "[1] Install\Update Script";
+			echo "[2] Run Script";
+			echo "[*] Exit"; input;  #geeting user input 
+			if [[ $input == 1 ]]; then {
+				
+				# install
+				printf "$red";
+				printf "[*] Changing Directory  : "; if cd ~/.scripts/; then printf "OK\n"; fi;
+				printf "[*] Checking Location	: "; if pwd > $hacking_install_log; then printf "OK\n"; fi;
+				printf "[*] Checking File       : "; if ls >> $log; then printf "OK\n"; fi;
+				printf "Ready to install.....\n $stop";
+
+				# installing hakku framework script
+				echo && read -p "want to install hakku? (y/n) " hakku;
+				if [[ $hakku == 'y' ]]; then {
+						echo -e "  \e[5mInstalling Hakku Framework\e[0m"
+						apt install python
+						if git clone https://github.com/4shadoww/hakkuframework; then printf "Compleate\n"; else printf "Failed\n"; fi;
+					}
+				elif [[ $hakku == 'n' ]]; then {
+					sleep 0.5 && echo "bye bye";
+				}; else {
+					echo "Invalid Options";
+				}; fi;
+
+			}; elif [[ $input == 2 ]]; then {
+				
+				# run
+				printf "[*] Changing Directory	: "; if cd ~/.scripts/hakkuframework/; then printf "OK\n"; fi;
+				printf "[*] Checking Location	: "; if pwd > $hacking_running_log; then printf "OK\n"; fi;
+				printf "[*] Checking FileSystem : "; if ls >> $log; then printf "OK\n"; fi;
+				#printf "[*] Getting Permission	: "; if chmod +x hakku.py; then printf "OK\n"; fi;
+				printf "Ready to run.....\n $stop"; sleep 1
+				clear; python hakku # running
+
+			}; elif [[ $input == * ]]; then {
+				$engine
+			}; else {
+				echo "Invalid Options"
+			}; fi;
+
 		;;
 		3) # aircrack ng
-			echo; 
+			echo "you mast have root permission for this"; echo; 
 			echo "[1] Install\Update Script";
-			echo "[2] Run Script"; input;  #geeting user input 
+			echo "[2] Run Script";
+			echo "[*] Exit"; input;  #geeting user input 
 			if [[ $input == 1 ]]; then {
 				
 				# install
@@ -175,8 +218,8 @@ function hacking_script() {
 				echo && read -p "want to install Aircrack-ng? (y/n) " AIRINSTALL;
 				if [[ $AIRINSTALL == 'y' ]]; then {
 						echo -e "  \e[5mInstalling Aircrack-ng\e[0m"
-						pkg install root-repo 
-						pkg install aircrack-ng					
+						apt install root-repo 
+						apt install aircrack-ng					
 					}
 				elif [[ $AIRINSTALL == 'n' ]]; then {
 					sleep 0.5 && echo "bye bye";
@@ -189,6 +232,8 @@ function hacking_script() {
 				printf "to run$blue Aircrack-ng$stop close the engine\n"
 				printf "and run$blue Aircrack-ng$stop from terminal\n"
 				printf "$stop"
+			}; elif [[ $input == * ]]; then {
+				$engine
 			}; else {
 				echo "Invalid Options"
 			}; fi;
