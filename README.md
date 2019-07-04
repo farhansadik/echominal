@@ -21,62 +21,37 @@ Termux is an Android terminal emulator and Linux environment app that works dire
   * Fast and beautiful design
   * ... and more
 
-## Language Used
-  * Bash Scripting
-
-## CCLi Command List 
-
-1. install ~ to install a package <br>
-    example ~ `install <package-name>`
-
-2. remove ~ to remove/install a package <br>
-    example ~ `remove <package-name>`
-
-3. sync ~ to update/sync distro repository <br>
-    example ~ type `sync` and hit enter
-
-4. upgrade ~ to upgrade all of package <br>
-    example ~ type `upgrade` and hit enter
-
-5. help ~ for get help <br>
-    example ~ type `help` and hit enter
-
 ## Requirements
   * Termux [download](https://play.google.com/store/apps/details?id=com.termux&hl=en)
   * Termux-Api [download](https://play.google.com/store/apps/details?id=com.termux.api&hl=en)
-  * Android Root Access
+  * Android **Root** Access 
 
 ### Installation Method
 > Beginnergs Method
 
-just copy and paste those commands, one by one
+Just **copy** and **paste** those commands, one by one
 ```
-pkg install git 
-git clone https://github.com/farhansadik/EchoMinal.git
-cd EchoMinal
-./install
+    pkg install git 
+    git clone https://github.com/farhansadik/EchoMinal.git
+    cd EchoMinal
+    ./install
 ```
-after install **please restart termux app**. To run echominal type: 
+After install **Please restart termux app**. <br>
+To **run** echominal type: 
 ```
-engine
+    engine 
 ```
 
-> Advance Method
+## Web pages
+Official website: https://squaredevops.blogspot.com/ <br>
+Official wiki: https://github.com/farhansadik/EchoMinal/wiki <br>
+Github: https://github.com/farhansadik/EchoMinal <br>
 
-1. Update packages to latest version
-	- Install git using `pkg install git` command.
-2. Download the repository files (project) from the download section or clone this project by typing in the bash the following command: `git clone https://github.com/farhansadik/EchoMinal.git`
-3. Then Redirect to `EchoMinal` folder using `cd EchoMinal`.
-4. Enter `ls` command, for check all of files directory. The output looks like ~
-  ```
-  farhansadik@linux ~ > ls
-  ChangeLog  extras.zip  install  LICENSE  README.md
-  ```
-5. Setup permission to installer `chmod +x install` and hit enter.
-6. Then run the installer sctipt `./install`. Remember that, the installer would take few more minutes and it would take about 50 megabytes of internet. This installer will needed 100 megabyte free storage on system. `(PhoneMemory / sdcard)`
-7. After install all of packages, close termux app and run it again..
-8. Hope, everything works fine. If you face any problem please mail me at `farhansadikriduan@gmail.com` or create a issue on my repo. I'll try my best to fix those issue.
-*. Thank's a lot.
+## Contact
+If you do have any questions etc. about **Echominal**, then i don't mind if you send me email. <br>
+E-m@il: farhansadikriduan@gmail.com <br>
+bug reports to github or here: farhansadikriduan@gmail.com <br>
+
 
 # Screenshots
 ## EchoMinal Engine (old-version)
