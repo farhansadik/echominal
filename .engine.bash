@@ -335,7 +335,7 @@ function update() {
     # checking for updates
     if sleep 1; then {
 		# git pull --rebase --stat origin master
-		# cd $loc && git pull origin master
+	  cd $loc && git pull origin master
       printf '%s' "$GREEN"
       printf '%s\n' '_____________________'
       printf '%s\n' '< Upgrading EchoMinal >'
