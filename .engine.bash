@@ -359,16 +359,17 @@ function update() {
 function system() {
 	# System Maintanance
 	printf "\n$red";
-	printf "[1]  System Upgrade\n";
-	printf "[2]  Install Package\n";
-	printf "[3]  Uninstall Package\n";
-	printf "[4]  Operating System Info\n";
-	printf "[5]  Hostname & DNS Info\n";
-	printf "[6]  Network Interface\n";
-	printf "[7]$yellow  EchoMinal Settings $stop\n";
-	printf "$red" && printf "[8]  Disk Usage\n";
-	printf "[9]  Reboot Device\n";
-	printf "[*]  Quit\n $stop";
+	printf "[1]   System Upgrade\n";
+	printf "[2]   Install Package\n";
+	printf "[3]   Fix Broken Packages\n";
+	printf "[4]   Uninstall Package\n";
+	printf "[5]   Operating System Info\n";
+	printf "[6]   Hostname & DNS Info\n";
+	printf "[7]   Network Interface\n$yellow";
+	printf "[8]   EchoMinal Settings $red\n";
+	printf "[9]   Disk Usage\n";
+	printf "[10]  Reboot Device\n";
+	printf "[*]   Quit\n $stop";
 
 	input && if [[ $input == 1 ]]; then
 		# system upgrade
@@ -380,13 +381,17 @@ function system() {
 		# install a package
 		read -p "enter package name ~> " package_name
 		if pkg install $package_name; then printf "Update Compleate\n"; fi; echo;
-	elif [[ $input == 3 ]]; then
+	elif [[ $input == 3 ]]; then {
+		# fix broken packages
+		apt --fix-misssing
+	}
+	elif [[ $input == 4 ]]; then
 		# uninstall a package
 		echo; if read -p "enter package name ~> " package_name; then pkg remove $package_name; fi;
-	elif [[ $input == 4 ]]; then screenfetch -n && echo ;
-	elif [[ $input == 5 ]]; then netstat;
-	elif [[ $input == 6 ]]; then ifconfig;
-	elif [[ $input == 7 ]]; then {
+	elif [[ $input == 5 ]]; then screenfetch -n && echo ;
+	elif [[ $input == 6 ]]; then netstat;
+	elif [[ $input == 7 ]]; then ifconfig;
+	elif [[ $input == 8 ]]; then {
 		printf "$yellow";
 		printf "  [1] ZSH Font\n";
 		printf "  [2] ZSH Color\n";
@@ -405,8 +410,8 @@ function system() {
 			echo "invalid options";
 		}; fi;
 	}
-	elif [[ $input == 8 ]]; then disk_info;
-	elif [[ $input == 9 ]]; then echo "System Rebooting"; reboot && sleep 0.5; # root access required
+	elif [[ $input == 9 ]]; then disk_info;
+	elif [[ $input == 10 ]]; then echo "System Rebooting"; reboot && sleep 0.5; # root access required
 	elif [[ $input == * ]]; then sleep 0 #$engine;
 	else echo "Wrong KeyWord"; fi; pause;
 }
