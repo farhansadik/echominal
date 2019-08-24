@@ -278,7 +278,7 @@ function tools() {
 	elif [[ $input == * ]]; then sleep 0 #$engine; # run the engine again
 	else {
 		printf "Invalid Options\n" && echo; # footer;
-	}; fi; #pause;
+	}; fi; pause;
 }
 function input_settings() {
 	# settings for echominal 
@@ -392,8 +392,6 @@ function system() {
 		printf "$yellow";
 		printf "  [1] ZSH Font\n";
 		printf "  [2] ZSH Color\n";
-		#printf "  [3] Update ZSH\n";
-		#printf "  [4] Uninstall ZSH\n";
 		printf "  [3] EchoMinal Shell Settings\n";
 		printf "  [4] Update EchoMinal\n";
 		printf "  [0] Back $stop \n";
@@ -412,7 +410,7 @@ function system() {
 	elif [[ $input == 8 ]]; then disk_info;
 	elif [[ $input == 9 ]]; then echo "System Rebooting"; reboot && sleep 0.5; # root access required
 	elif [[ $input == * ]]; then sleep 0 #$engine;
-	else echo "Wrong KeyWord"; fi; #pause;
+	else echo "Wrong KeyWord"; fi; pause;
 }
 function about() {
 	printf " $yellow
@@ -421,7 +419,7 @@ Termux Manager for$deep_green Android OS $yellow
 
 Engine Version   :$red $engine_version $yellow
 Script Version   :$red $script_version $yellow
-Termux           :$blue Termux v0.72 $yellow
+Termux           :$blue Termux v0.74 $yellow
 Linux Kernel     :$red `uname -sr` $yellow
 
 EchoMinal gives you a simple way to access
