@@ -1,4 +1,11 @@
-Version 1.0.8 (Luka)
+Version 1.0.9 (Lua)
+	*. Install script has been updated
+	*. removed 'update zsh'
+	*. removed 'uninstall zsh'
+	*. fixed exit issue (working)
+	*. fixed ping request 
+
+Version 1.0.8 (Lua)
 	*. Logo Change while sys update
 	*. Add 'bat' as installer
 	*. Added new method of scripts manager on main menu
