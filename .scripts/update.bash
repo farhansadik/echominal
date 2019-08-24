@@ -73,7 +73,12 @@ function UpdateChangeLog() {
   printf "*. removed 'update zsh'\n"
   printf "*. removed 'uninstall zsh'\n"
   printf "*. fixed exit issue (working)\n"
-  printf "*. fixed ping request\n"
+  printf "*. added 'man' package\n"
+  printf "*. added fixing method for 'broken package'\n"
+  #printf "*. \n"
+  #printf "*. \n"
+
+
   printf "$stop\n"
 }
 
