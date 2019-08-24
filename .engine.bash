@@ -18,11 +18,11 @@ set import sudo # sudo - for termux
 set import root  # root - /root dir 
 set import su # super user 
 
-script_version="1.3.2"    # pre 1.2.07
-engine_version="1.0.8 Lua" # pre 1.0.7 Lapato
+script_version="1.3.3"     # pre 1.3.2
+engine_version="1.0.9 Lua" # pre 1.0.8 Lua
 
 ####################################################################
-# Farhan Sadik (squaredevops.blogspot.com) - June 2019
+# Farhan Sadik (squaredevops.blogspot.com) - August 2019
 ####################################################################
 
 # Define variables
@@ -34,9 +34,11 @@ zsh_theme=~/.oh-my-zsh/tools/theme_chooser.sh;
 zsh_update=~/.oh-my-zsh/tools/upgrade.sh;
 zsh_uninstall=~/.oh-my-zsh/tools/uninstall.sh;
 
-loc=~/EchoMinal/; # default clone location
+# default clone location
+loc=~/EchoMinal/; 
 
 # log files
+# if anything goes wrong you can see errors from log files
 log=~/.log/system-status.log; # for track logs
 hacking_install_log=~/.log/hacking_install.log;
 hacking_running_log=~/.log/hacking_running.log;
@@ -95,11 +97,7 @@ function hacking_script() {
 	# Script Menager
 	# UNDER DEVELOPMENT - CROSSLINE
 	#########################################################################
-
-	printf "\n$red|-[ NOTE ] -------------------------------|\n| This function is under development      |\n| Please wait for next release            |\n|_________________________________________|\n$stop";
-	printf "\nDue to security the scripts option has been turn of for a while\n";
-	printf "We'll fix this issue on next update\n"
-	#pause
+	
 	echo; # extra echo
 
 	 printf "  [1] Weeman\n";
@@ -239,12 +237,12 @@ function hacking_script() {
 			}; fi;
 		;;
 		*)
-			sleep 0; $engine
+			sleep 0; #$engine
 		;;
 		*)
 			printf "Wrong Input\n";
 		;;
-	esac; pause # pause - re run the engine 
+	esac; #$engine #pause # pause - re run the engine 
 }
 function tools() {
 	# tools_and_utilities function
@@ -257,8 +255,7 @@ function tools() {
 	printf "  [7]  ISO Compression\n";
 	printf "  [8]  Whois Tool\n";
 	printf "  [9]  Ping Request\n";
-	printf "  [10] Raed a File\n"; 
-	printf "  [*] Back\n";
+	printf "  [*]  Back\n";
 	input; if [[ $input == 1 ]]; then htop;
 	elif [[ $input == 2 ]]; then vim;
 	elif [[ $input == 3 ]]; then nano;
@@ -274,21 +271,14 @@ function tools() {
 	elif [[ $input == 9 ]]; then {
 		# ping request 
 		read -p "enter address : " address;
-		ping $address # -c 5 is not support in android 
+		# set up as test experiment 
+		ping –c 5 $address
+		#ping $address # -c 5 is not support in android 
 	}
-	elif [[ $input == 10 ]]; then {
-		# bat 
-		echo "Note ----- > "
-		echo "Please change your dir using 'cd' command"
-		echo "and then run bat using 'bat <file_name>'"
-		echo 
-		read -p "enter file name : " FnaMe;
-		bat $FnaMe;
-	}
-	elif [[ $input == * ]]; then $engine; # run the engine again
+	elif [[ $input == * ]]; then sleep 0 #$engine; # run the engine again
 	else {
 		printf "Invalid Options\n" && echo; # footer;
-	}; fi; pause;
+	}; fi; #pause;
 }
 function input_settings() {
 	# settings for echominal 
@@ -380,7 +370,7 @@ function system() {
 	printf "[7]$yellow  EchoMinal Settings $stop\n";
 	printf "$red" && printf "[8]  Disk Usage\n";
 	printf "[9]  Reboot Device\n";
-	printf "[0]  Quit\n $stop";
+	printf "[*]  Quit\n $stop";
 
 	input && if [[ $input == 1 ]]; then
 		# system upgrade
@@ -402,22 +392,18 @@ function system() {
 		printf "$yellow";
 		printf "  [1] ZSH Font\n";
 		printf "  [2] ZSH Color\n";
-		printf "  [3] Update ZSH\n";
-		printf "  [4] Uninstall ZSH\n";
-		printf "  [5] EchoMinal Shell Settings\n";
-		printf "  [6] Update EchoMinal\n";
+		#printf "  [3] Update ZSH\n";
+		#printf "  [4] Uninstall ZSH\n";
+		printf "  [3] EchoMinal Shell Settings\n";
+		printf "  [4] Update EchoMinal\n";
 		printf "  [0] Back $stop \n";
 		input && if [[ $input == 1 ]]; then {
 			$zsh_font
 		} elif [[ $input == 2 ]]; then {
 			$zsh_color;
 		} elif [[ $input == 3 ]]; then {
-			sh $zsh_update;
-		} elif [[ $input == 4 ]]; then {
-			$zsh_uninstall;
-		} elif [[ $input == 5 ]]; then {
 			input_settings;
-		} elif [[ $input == 6 ]]; then {
+		} elif [[ $input == 4 ]]; then {
 			if update; then termux-reload-settings; fi;
 		} else {
 			echo "invalid options";
@@ -425,8 +411,8 @@ function system() {
 	}
 	elif [[ $input == 8 ]]; then disk_info;
 	elif [[ $input == 9 ]]; then echo "System Rebooting"; reboot && sleep 0.5; # root access required
-	elif [[ $input == 0 ]]; then $engine;
-	else echo "Wrong KeyWord"; fi; pause;
+	elif [[ $input == * ]]; then sleep 0 #$engine;
+	else echo "Wrong KeyWord"; fi; #pause;
 }
 function about() {
 	printf " $yellow
