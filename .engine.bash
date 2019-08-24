@@ -271,9 +271,7 @@ function tools() {
 	elif [[ $input == 9 ]]; then {
 		# ping request 
 		read -p "enter address : " address;
-		# set up as test experiment 
-		ping –c 5 $address
-		#ping $address # -c 5 is not support in android 
+		ping $address # -c 5 is not support in android 
 	}
 	elif [[ $input == * ]]; then sleep 0 #$engine; # run the engine again
 	else {

@@ -3,7 +3,7 @@
 #!/system/bin/bash
 #!/data/data/com.termux/files/usr/bin/bash
 
-script_version="0.1.04"    # prev - 0.1.02
+script_version="0.1.04-1"    # prev - 0.1.02
 engine_version="1.0.9 Lua" # prev - 1.0.8 Lua
 
 # log
