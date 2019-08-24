@@ -383,7 +383,7 @@ function system() {
 		if pkg install $package_name; then printf "Update Compleate\n"; fi; echo;
 	elif [[ $input == 3 ]]; then {
 		# fix broken packages
-		apt --fix-misssing
+		apt install --fix-misssing
 	}
 	elif [[ $input == 4 ]]; then
 		# uninstall a package
