@@ -459,7 +459,6 @@ while true
 		show_menu # display memu
 		main # wait for user input
 done
-exit 0
 
 # A Program By, Farhan Sadik
 # Copyright (C) Square Development Group
