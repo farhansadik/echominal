@@ -4,6 +4,7 @@ Version 1.0.9 (Lua)
 	*. removed 'uninstall zsh'
 	*. fixed exit issue
 	*. added 'man' package
+	*. added fixing method for 'broken package'
 
 Version 1.0.8 (Lua)
 	*. Logo Change while sys update
