@@ -51,7 +51,7 @@ online_installation() {
     # installing packages
     echo -e "\e[1m\e[32m==> \e[97mInstalling Packages......\e[0m";
     printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 1 ....\e[0m\n";
-    pkg install screenfetch htop termux-api p7zip vim bat root-repo; #(is not needed);
+    pkg install screenfetch htop termux-api p7zip vim bat root-repo man; #(is not needed);
     printf "\e[1m\e[34m  -> \e[97mInstalling Packages Set 2 ....\e[0m\n";
     pkg install figlet zip unzip zsh nano # required packages
 }
