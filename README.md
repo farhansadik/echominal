@@ -40,6 +40,8 @@ To **run** echominal type:
 engine 
 ```
 
+> **Note:** Some of device may not work properly. 
+
 ## Keywords and Usages
  1. **install** ~ to install a package  <br>
  example ~ ```install <package-name>``` 
@@ -54,14 +56,8 @@ engine
  example ~ type ```upgrade```
 
  5. **help** ~ for get help <br>
- example ~ type ```help``` 
+ example ~ type ```ccli-help``` 
  
- 6. **clean-cache** ~ Clean up all local caches <br>
- example ~ `clean-cache` and hit enter  
- 
- 7. **please** ~ added for fun <br>
- `please` works replace of **sudo** command <br>
- example ~ `please install toilet` and hit enter
 
 ## Web pages
 Official website: https://squaredevops.blogspot.com/ <br>
