@@ -40,6 +40,29 @@ To **run** echominal type:
 engine 
 ```
 
+## Keywords and Usages
+ 1. **install** ~ to install a package  <br>
+ example ~ ```install <package-name>``` 
+ 
+ 2. **remove** ~ to remove/install a package <br>
+ example ~ ```remove <package-name>``` 
+ 
+ 3. **sync** ~ to update/sync distro repository <br>
+ example ~ type ```sync```
+ 
+ 4. **upgrade** ~ to upgrade all of package <br>
+ example ~ type ```upgrade```
+
+ 5. **help** ~ for get help <br>
+ example ~ type ```help``` 
+ 
+ 6. **clean-cache** ~ Clean up all local caches <br>
+ example ~ `clean-cache` and hit enter  
+ 
+ 7. **please** ~ added for fun <br>
+ `please` works replace of **sudo** command <br>
+ example ~ `please install toilet` and hit enter
+
 ## Web pages
 Official website: https://squaredevops.blogspot.com/ <br>
 Official wiki: https://github.com/farhansadik/EchoMinal/wiki <br>
