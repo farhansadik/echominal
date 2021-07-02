@@ -1,3 +1,40 @@
+Version 2.0 (Batasu) July-2021:
+	* Separated script function from main script
+	* removed zipc script 
+	* removed isox sciprt 
+	* added tools function
+	* added netinfo 
+	* added youtube-dl 
+	* added ranger 
+	* removed ccli		
+	* added main menu list in scripts.bash 
+	* removed Hostname & DNS Info
+	* Network Interface
+	* removed Operating System Info
+	* removed whois tool
+	* removed ping request
+	* removed network info (ipconfig/ifconfig)
+	* added extra system_maintanance.bash for maintanance menu // updated to 0.1.11 Alpha 
+	* added extra scripts_manager.bash for scripts menu // updated to 0.1.15 Alpha
+	* removed 'host_name.cfg'
+	* renamed 'user_name.cfg' to 'username'  
+	* ccli has been added for test 
+	* env file created for test environment 
+	* added search in ccli 
+	* updated environment file and added mirror patch for legacy setup
+	* termux api has been added 
+	* termux backup and restore point added
+	* termux music has been added
+	* added reboot to recovery 
+	* added mp3 download from youtube
+	* added Termux Font
+	* added Termux Color Scheme
+	* Changed echominal shell style
+	* removed Change user name
+	* bug fixed 
+	* removed zsh style
+	* removed oh my zsh
+
 Version 1.0.9 (Lua)
 	*. Install script has been updated
 	*. removed 'update zsh'
