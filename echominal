@@ -1,0 +1,263 @@
+#!/usr/bin/bash
+#!/usr/bin/busybox
+#!/data/data/com.termux/files/usr/bin/bash 
+
+
+script_version="1.3.14"     		# pre 1.3.9
+engine_version="2.0 Batasu" 		# pre 1.0.8 Lua
+
+####################################################################
+# Farhan Sadik (https://github.com/farhansadik) - June 2021
+####################################################################
+
+# Define variables
+red='\033[1;91m'; deep_green='\033[0;32m'; green='\033[1;92m'; yellow='\033[1;93m'; blue='\033[1;94m'; white='\033[1;97m'; 
+stop='\e[0m'; blink='\e[5m';
+
+# default clone location
+def_loc=~/.config/echominal; 
+
+# shell-setting
+username=~/.config/echominal/username;							# not used 
+shell_style=~/.config/echominal/shell_style.cfg;
+
+set import termux-media-player from termux-api
+set import termux-notification from termux-api
+set import termux-notification-remove from termux-api
+
+function pause(){
+	# Purpose: Display pause prompt
+	local message="$@"
+	[ -z $message ] && message="Press [Enter] key to continue..."
+	read -p "$message" readEnterKey
+}
+
+function write_header(){
+	# just a header 
+	local h="$@"
+	echo "------------------------------------------------------";
+	echo " ${h}";
+	echo "------------------------------------------------------";
+}
+
+function footer() {
+	printf "$deep_green" && printf "EchoMinal $engine_version\nCreated by Farhan Sadik\n $stop";
+	echo && exit 0;
+}
+
+function main_menu(){
+	clear; echo "echominal v$script_version"; printf "$red" && figlet "EchoMinal"; printf "$stop";
+	printf "$deep_green" && printf "Termux Manager for Android OS\n"; printf "\n$stop"
+	printf "  [1]  Scripts\n";
+	printf "  [2]  Tools & Utilities\n";
+	printf "  [3]  System Maintenance\n";
+	printf "  [4]  About\n";
+	printf "  [0]  Exit\n";
+}
+
+function termux_api_menu() {
+	printf "  [1]   Wifi enable/disable\n";
+	printf "  [2]   Wifi Scan Information\n";
+	printf "  [3]   Wifi Connection Information\n";
+	printf "  [4]   Get Battery Status\n";
+	printf "  [5]   Sensor Information\n";
+	printf "  [6]   Celler Information\n"; # termux-telephony-deviceinfo
+	printf "  [7]   List call log history\n";
+	printf "  [8]   Contact List\n";
+	printf "  [9]   Call\n";
+	printf "  [10]  Send SMS\n";
+	printf "  [11]  List SMS messages\n";
+	printf "  [12]  Media Player\n";
+	printf "  [0]   Back\n";
+}
+
+function about() {
+	printf " $yellow
+EchoMinal Engine
+Termux Manager for$deep_green Android OS $yellow
+
+Engine Version   :$red $engine_version $yellow
+Script Version   :$red $script_version $yellow
+Termux Version   :$red $TERMUX_VERSION $yellow
+Linux Kernel     :$red `uname -sr` $yellow
+
+EchoMinal gives you a simple way to access
+termux application.
+
+contact to dev ~ farhansadikriduan@gmail.com
+
+Farhan Sadik
+Square Development Group
+$stop \n"; pause
+}
+
+function termux_api() {
+	# need to add import data 
+	local api;
+	print_ok=" [**] ok .."
+
+	while [ "$api" != "0" ]; do {
+		clear ; echo; figlet ",~aPi~,";
+		# cowsay
+
+		echo && termux_api_menu && echo 
+		echo -n "`cat $shell_style`" && read api; echo;
+
+		if [[ $api == 1 ]]; then {
+			# Wifi enable/disable
+			echo 
+			echo "Write 'enable' or 'disable'. To quit enter 'quit'"; 
+			read -p "termux-api % : " boolean
+
+			if [[ $boolean == 'enable' ]]; then {
+				termux-wifi-enable true
+				printf "Wifi turned$blue on\n$stop"
+			} 
+			elif [[ $boolean == 'disable' ]]; then {
+				termux-wifi-enable false
+				printf "Wifi turned$red off\n$stop"
+			} 
+			elif [[ $boolean == 'q' || $boolean == 'exit' || $boolean == 'quit' || $boolean == 'quit()' ]]; then {
+				footer && exit 0
+			} fi
+
+			echo && pause 	
+		}
+		elif [[ $api == 2 ]]; then termux-wifi-scaninfo; pause 			# Wifi Scan Information
+		elif [[ $api == 3 ]]; then termux-wifi-connectioninfo; pause	# Wifi Connection Information
+		elif [[ $api == 4 ]]; then termux-battery-status; pause			# Get Battery Status
+		elif [[ $api == 5 ]]; then termux-sensor -l ; pause				# Sensor Information
+		elif [[ $api == 6 ]]; then termux-telephony-deviceinfo; pause	# Celler Information
+		elif [[ $api == 7 ]]; then termux-call-log; pause				# Get Call Log
+		elif [[ $api == 8 ]]; then termux-contact-list; pause			# Contact List
+		elif [[ $api == 9 ]]; then { 
+																		# call 
+			read -p "phone number # " phone_number
+			termux-telephony-call $phone_number
+			pause
+		}
+		elif [[ $api == 10 ]]; then {
+																		# Send SMS
+			read -p "phone number # " phone_number
+			read -p "message      # " message
+			termux-sms-send -n $phone_number $message
+			echo "A sms has been send to '$phone_number' this number"
+			echo && pause
+		}
+		elif [[ $api == 11 ]]; then termux-sms-list; pause				# Get SMS List
+		elif [[ $api == 12 ]]; then {
+			# Media Player
+			def_location=/sdcard/MP3;
+
+			cd $def_location
+			write_header " Song List"; echo 
+			ls -1 --file-type *.mp3 # printing song list
+			echo; read -p "search % " input 
+
+			file="$(find $input -type f)" # exec 2> /dev/null # for file 
+			echo
+
+			if [[ $file == $input ]]; then {
+			    termux-media-player play $input
+			    termux-notification --id 1 --title "Music Player" --content "playing music using termux-media-player" \
+			        --button1 'play' --button1-action "termux-media-player play; termux-toast 'playing song' " \
+				 	--button2 'pause' --button2-action "termux-media-player pause; termux-toast 'song has been paused' " \
+				 	--button3 'stop' --button3-action "termux-media-player stop; termux-toast 'quit' ; termux-notification-remove 1";	
+			}
+			else echo "sorry no $input has been found"; 
+			fi
+
+			pause	
+		}
+		elif [[ $api == 'q' || $api == 'exit' || $api == 'quit' || $api == 'quit()'  ]]; then footer && exit 0;
+		fi
+
+		# termux-telephony-cellinfo 
+		# Get information about all observed cell information from all radios on the device including the primary and neighboring cells.
+	}
+	done 
+
+}
+
+function tools() {
+	# tools_and_utilities function
+	local tools_ver;
+
+	while [ "$tools_ver" != "0" ]; do {
+		echo
+		printf "  [1]  Htop [Monitoring Tools]\n";
+		printf "  [2]  Python 3 \n";
+		printf "  [3]  Node.js \n"; 
+		printf "  [4]  Termux API \n";
+		printf "  [5]  Download MP3 from Youtube \n"; 
+		printf "  [6]  File Manager [CLI] \n";
+		printf "  [0]  Back\n";
+
+		echo; echo -n "`cat $shell_style`" && read tools_ver; echo;
+
+		if [[ $tools_ver == 1 ]]; then htop;
+		elif [[ $tools_ver == 2 ]]; then python3;
+		elif [[ $tools_ver == 3 ]]; then node;
+		elif [[ $tools_ver == 4 ]]; then termux_api
+		elif [[ $tools_ver == 5 ]]; then {
+			youtube_storage='/sdcard/MP3'; 
+			printf "$deep_green"
+			printf "paste youtube video link here\n";
+			printf "enter q/quit/exit for exit\n$stop"; echo 
+
+			read -p "youtube-dl # " youtube_input
+
+			if [[ $youtube_input != 'q' && $youtube_input != 'exit' && $youtube_input != 'quit' ]]; then {
+				echo "executing $youtube_input";
+				youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0 $youtube_input
+				
+				# moving files to sdcard
+				if ls *.mp3; then {
+				    if cp -r *.mp3 $youtube_storage; then rm -r *.mp3; else echo failed to copy; fi;
+				} fi;
+
+				# footer 
+				printf "$deep_green";
+				printf "Audio file is located in$red phone-memory/MP3/$deep_green folder\n $stop"; echo && pause;
+
+			} elif [[ $youtube_input == 'q' || $youtube_input == 'exit' || $youtube_input == 'quit' ]]; then {
+				echo "$youtube_input means quit"
+			} fi
+		
+		}
+		elif [[ $tools_ver == 6 ]]; then ranger /sdcard ; pause;
+		elif [[ $tools_ver == 'q' || $tools_ver == 'exit' || $tools_ver == 'quit' || $tools_ver == 'quit()'  ]]; then footer && exit 0;
+		fi
+
+	}
+	done 
+
+}
+
+function main(){
+	local c; echo
+	read -p "`cat $shell_style`" c
+	case $c in
+		1) bash ~/.config/echominal/tools/scripts_manager.bash ;;  ######################################################
+		2) tools ;; 
+		3) bash ~/.config/echominal/tools/system_maintanance.bash ;; ######################################################
+		4) about ;; 
+		0) echo && footer ;; 
+		*)
+			echo "Please select between 1 to 4 choice only.";
+			printf "Sorry you've entered wrong options\n"; sleep 1;
+			echo -e "\e[5mPlease Wait.....\e[0m"; sleep 0.5 # blinking text
+			echo -e "$red\e[7mRebooting Engine.....\e[0m" && sleep 0.5;
+			$engine;
+	# pause
+	esac
+}
+
+# main logic
+while true; do 
+	main_menu 
+	main; 
+done
+
+# A Program By, Farhan Sadik
+# Copyright (C) Square Development Group
