@@ -21,7 +21,7 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 
   * [Termux](https://f-droid.org/en/packages/com.termux/)
   * [Termux-Api](https://f-droid.org/en/packages/com.termux.api/)
-  * [Android **Root** Access](https://en.wikipedia.org/wiki/Rooting_(Android))
+  * [Android **Root** Access](https://en.wikipedia.org/wiki/Rooting_(Android)) ***Optional***
 > After install make sure you've storage permission! <br>
 You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
 
