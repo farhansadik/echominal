@@ -28,8 +28,7 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 ```bash
 $ pkg install git 
 $ git clone https://github.com/farhansadik/echominal.git ~/.config/echominal
-$ cd ~/.config/echominal/tools
-$ ./install
+$ bash ~/.config/echominal/tools/install
 ```
 To **run** echominal type: 
 
@@ -43,11 +42,11 @@ echominal
 
 | Description      | Syntax |
 | :---------: | ----------- |
-| Install a package      | $ **install** or **i** <package-name> <br>$ install vim <br> **or** <br>$ i vim |
+| Install a package      | $ **install** or **i** package_name <br>$ install vim <br> **or** <br>$ i vim |
 | Install multiple package   | $ **install** or **i** package_1 package_2 package_3 <br>$ install vim nano fish <br> **or** <br>$ i vim nano fish  |
-| Remove a package  | $ **remove** or **r** <package-name> <br>$ remove vim <br> **or** <br>$ r vim |
+| Remove a package  | $ **remove** or **r** package_name <br>$ remove vim <br> **or** <br>$ r vim |
 | Update/Upgrade all Packages   | $ **update** or **u**  |
-| Search a Package   | $ **search** or **s** <package-name>  |
+| Search a Package   | $ **search** or **s** package_name  |
 
 ### Web pages
 Official wiki: https://github.com/farhansadik/echominal/wiki <br>
