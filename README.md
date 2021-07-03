@@ -22,6 +22,13 @@ This script a simple manager for Termux. User can use is in a short way. This sc
   * [Termux](https://f-droid.org/en/packages/com.termux/)
   * [Termux-Api](https://f-droid.org/en/packages/com.termux.api/)
   * [Android **Root** Access](https://en.wikipedia.org/wiki/Rooting_(Android))
+> After install make sure you've storage permission! <br>
+You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
+
+Workaround:
+* Go to Android Settings --> Applications --> Termux --> Permissions
+* Revoke Storage permission
+* Grant Storage permission again
 
 ### Installation Method
 > Just **copy** and **paste** those commands, one by one:
