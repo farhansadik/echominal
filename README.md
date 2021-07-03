@@ -17,7 +17,7 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 * Simplicity 
 
 ### Requirements
-> Do not use Termux app from Google Play. It is deprecated!! 
+> Do not use Termux app from Google Play. It is deprecated!! Remember that [Android 5.x - 6.x](https://github.com/farhansadik/echominal/issues/56) is NOT SUPPORTED
 
   * [Termux](https://f-droid.org/en/packages/com.termux/)
   * [Termux-Api](https://f-droid.org/en/packages/com.termux.api/)
@@ -57,7 +57,7 @@ echominal
 
 ### Web pages
 Official wiki: https://github.com/farhansadik/echominal/wiki <br>
-Development Repo : https://github.com/farhansadik/echominal-development/
+Development Repository : https://github.com/farhansadik/echominal-development/
 
 ### Contact
 If you do have any questions etc. about echominal, then i don't mind if you send me email. <br>
@@ -74,10 +74,10 @@ bug reports to [github(issues)](https://github.com/farhansadik/echominal/issues)
 --> 
 
 ## Contributing
-[![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) <br>
 If you want to contribute to this project and make it better with new ideas, your pull request is very welcomed. If you find any issue just put it in the repository issue section, thank you.
 
-Before contribute please [read this](CONTRIBUTING.md).
+Before contribute please [read this](https://github.com/farhansadik/echominal/issues/67).
 
 1. Please do not push/merge your code in `master` branch.
 2. Please deploy your code in `development` branch. 
