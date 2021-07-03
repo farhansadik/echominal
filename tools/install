@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #!/data/data/com.termux/files/usr/bin/bash
 
-script_version='1.6.03';       # pre - 1.3.09
+script_version='1.6.04';       # pre - 1.3.09
 engine_version="2.0 Batasu";   # pre - 1.0.7 Marato
 
 # Define variables
@@ -34,7 +34,7 @@ function base() {
 	if [[ `ls -a $def_loc/echominal | grep $desire_location` == $desire_location  ]] ; then {
 		echo "found file"; 
 		echo "getting base permissions"
-		if chmod +x echominal; then {
+		if chmod +x $desire_location; then {
 			# copy
 			cp -rfv $desire_location $bin_file
 		} fi
