@@ -77,10 +77,7 @@ bug reports to [github(issues)](https://github.com/farhansadik/echominal/issues)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) <br>
 If you want to contribute to this project and make it better with new ideas, your pull request is very welcomed. If you find any issue just put it in the repository issue section, thank you.
 
-Before contribute please [read this](https://github.com/farhansadik/echominal/issues/67).
-
-1. Please do not push/merge your code in `master` branch.
-2. Please deploy your code in `development` branch. 
+Before contribute you must [read this](https://github.com/farhansadik/echominal/issues/67).
 
 **Contributor's :**
 [@batasu](https://github.com/batasu)
