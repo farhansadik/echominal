@@ -16,6 +16,9 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 * Removed unnecessary packages! 
 * Simplicity 
 
+> **Note** <br>
+> no scripts has been added here! will be updated soon!!!
+
 ### Requirements
 > Do not use Termux app from Google Play. It is deprecated!! Remember that [Android 5.x - 6.x](https://github.com/farhansadik/echominal/issues/56) is NOT SUPPORTED
 
@@ -25,7 +28,7 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 > After install make sure you've storage permission! <br>
 You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
 
-Workaround:
+**How to get storage permission:**
 * Go to Android Settings --> Applications --> Termux --> Permissions
 * Revoke Storage permission
 * Grant Storage permission again
