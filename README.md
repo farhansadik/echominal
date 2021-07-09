@@ -5,6 +5,8 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge)](http://perso.crans.org/besson/LICENSE.html)
 
+> ### NOTE 
+> This project is under development (beta) version has only termux manager. Script manager has not included yet. 
 
 ### What's New
 
@@ -34,9 +36,8 @@ You may get "Permission denied" error when trying to access shared storage, even
 * Grant Storage permission again
 
 ### Installation Method
-**How to install [youtube video]**
+**How to install [youtube video]** <br>
 https://www.youtube.com/watch?v=uKB5iv8P1mg&ab_channel=FarhanSadik
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=uKB5iv8P1mg&ab_channel=FarhanSadik "click")
 
 > Just **copy** and **paste** those commands, one by one:
 ```bash
@@ -51,7 +52,7 @@ echominal
 
 > **Note:** Some of device may not work properly. Then you'll have to install it manually. 
 
-### Keywords and Usages
+### Shortcut Keywords and Usages
 
 | Description      | Syntax |
 | :---------: | ----------- |
