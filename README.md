@@ -34,6 +34,10 @@ You may get "Permission denied" error when trying to access shared storage, even
 * Grant Storage permission again
 
 ### Installation Method
+**How to install [youtube video]**
+https://www.youtube.com/watch?v=uKB5iv8P1mg&ab_channel=FarhanSadik
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=uKB5iv8P1mg&ab_channel=FarhanSadik "click")
+
 > Just **copy** and **paste** those commands, one by one:
 ```bash
 $ pkg install git 
@@ -41,7 +45,6 @@ $ git clone https://github.com/farhansadik/echominal.git ~/.config/echominal
 $ bash ~/.config/echominal/tools/install
 ```
 To **run** echominal type: 
-
 ```
 echominal
 ```
