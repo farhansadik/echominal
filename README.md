@@ -6,7 +6,8 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge)](http://perso.crans.org/besson/LICENSE.html)
 
 > ### NOTE 
-> This project is under development (beta) version has only termux manager. Script manager has not included yet. 
+> This project is under development (**beta**) version has only termux manager. Script manager has not included yet. 
+> New Update is on the way..
 
 ### What's New
 
@@ -18,16 +19,13 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 * Removed unnecessary packages! 
 * Simplicity 
 
-> **Note** <br>
-> no scripts has been added here! will be updated soon!!!
-
 ### Requirements
 > Do not use Termux app from Google Play. It is deprecated!! Remember that [Android 5.x - 6.x](https://github.com/farhansadik/echominal/issues/56) is NOT SUPPORTED
 
   * [Termux](https://f-droid.org/en/packages/com.termux/)
   * [Termux-Api](https://f-droid.org/en/packages/com.termux.api/)
   * [Android **Root** Access](https://en.wikipedia.org/wiki/Rooting_(Android)) ***Optional***
-> After install make sure you've storage permission! <br>
+> After install make sure you've storage permission on **termux** and **termux apli**. Otherwise some of options won't work! <br>
 You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
 
 **How to get storage permission:**
