@@ -85,9 +85,8 @@ function UpdateEchominal() {
 
     # replaceing engine
     printf "Replacing Engine  : ";
-    # this time no need to replace 
     # updating script_manager
-    #if cp -rfv $engine_loc $bin_file >> $log; then printf "Done\n"; fi;
+    if cp -rfv $engine_loc $bin_file >> $log; then printf "Done\n"; fi;
 
     #########################################################
     # must delete update.bash file [everytime]              #
