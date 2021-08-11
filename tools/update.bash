@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
 #!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
 script_version="0.3.03"    # prev - 0.1.02
 
@@ -22,43 +22,51 @@ function ChangeLog() {
 
   printf "\nNew update has been arrived $yellow\n"
   printf "============================$red\n"
-  printf "      EchoMinal 2.0  $yellow\n"
-  printf "       Testing Update $yellow\n"
+  printf "      EchoMinal 2.1  $yellow\n"
+  printf "          BETA $yellow\n"
   printf "============================\n$red"
-  printf "*. Little fix on engine\n"
-  printf "*. update delete fix\n"
-  printf "*. fixed exit issue$yellow (working)$stop\n"
-  #printf "*. \n"
-  #printf "*. \n"
-
-
+  printf "*. Base 2.1 Beta\n"
+  printf "*. Script Manager 0.1.34\n"
+  printf "*. New Readme File\n"
+  printf "*. Weeman\n"
+  printf "*. Hakku Framework\n"
+  printf "*. Aircrack-ng\n"
+  printf "*. Nmap\n"
+  printf "*. Zphisher \n"
+  printf "*. Short Url\n"
+  printf "*. zVirus-Gen\n"
+  printf "*. Bash To mp4\n"
+  
+  # printf "*. fixed exit issue$yellow (working)$stop\n"
   printf "$stop\n"
 }
 
 function copy() {
-  spin & # calling function
-  pid=$! # unknown
+	# nor used 
+	spin & # calling function
+	pid=$! # unknown
 
-  for i in `seq 1 10`
-  do
-    sleep 0.5
-  done
+	for i in `seq 1 10`
+	do
+	sleep 0.5
+	done
 
-  kill $pid
-  echo
+	kill $pid
+	echo
 }
 
 pWait=('Please Wait' 'pLease Wait' 'plEase Wait' 'pleAse Wait' 'pleaSe Wait' 'pleasE Wait' 'please Wait' 'please wAit' 'please waIt' 'please waiT')
 
 function spin() {
-  while [ 1 ]
-  do
-    for i in "${pWait[@]}"
-    do
-        echo -ne "\r$i"
-        sleep 0.2
-    done
-  done
+	# not used 
+	while [ 1 ]
+		do
+			for i in "${pWait[@]}"
+				do
+				    echo -ne "\r$i"
+				    sleep 0.2
+		done
+	done
 }
 
 function UpdateEchominal() {
@@ -77,7 +85,9 @@ function UpdateEchominal() {
 
     # replaceing engine
     printf "Replacing Engine  : ";
-    if cp -rfv $engine_loc $bin_file >> $log; then printf "Done\n"; fi;
+    # this time no need to replace 
+    # updating script_manager
+    #if cp -rfv $engine_loc $bin_file >> $log; then printf "Done\n"; fi;
 
     #########################################################
     # must delete update.bash file [everytime]              #

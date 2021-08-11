@@ -1,3 +1,23 @@
+Version 2.1 (Batasu) August-2021:
+	* removed previous menu from scripts manager 
+	* added new tested menu in scripts manager 
+	* added new documention  
+	* Script Manager [0.1.17] - added weeman script! ready for test 
+	* Script Manager [0.1.19] - added hakkuframework! not ready for test!
+	* Script Manager [0.1.21] - added aircrack-ng! ready for test!
+	* Script Manager [0.1.22] - hakku framework ready for test
+	* Script Manager [0.1.23] - hakku framework fix [1]
+	* Script Manager [0.1.24] - weeman and aircrack-ng fix [1]
+	* Script Manager [0.1.25] - aircrack-ng fix [1]
+	* Script Manager [0.1.26] - aircrack-ng fix [2]
+	* Script Manager [0.1.27] - nmap deployed for test
+	* Script Manager [0.1.28] - fix for nmap [1]
+	* Script Manager [0.1.29] - fix for nmap [2]
+	* Script Manager [0.1.30] - added zphisher 
+	* Script Manager [0.1.31] - added shorturl and new menu with color added 
+	* Script Manager [0.1.32] - added zvirus gen
+	* Script Manager [0.1.32] - added bash2mp4
+	
 Version 2.0 (Batasu) July-2021:
 	* Separated script function from main script
 	* removed zipc script 

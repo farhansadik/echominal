@@ -5,10 +5,6 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge)](http://perso.crans.org/besson/LICENSE.html)
 
-> ### NOTE 
-> This project is under development (**beta**) version has only termux manager. Script manager has not included yet. 
-> New Update is on the way..
-
 ### What's New
 
 * Simple to use
@@ -24,12 +20,12 @@ This script a simple manager for Termux. User can use is in a short way. This sc
 
   * [Termux](https://f-droid.org/en/packages/com.termux/)
   * [Termux-Api](https://f-droid.org/en/packages/com.termux.api/)
-  * [Android **Root** Access](https://en.wikipedia.org/wiki/Rooting_(Android)) ***Optional***
+  * [Android **Root** Access](https://en.wikipedia.org/wiki/Rooting_(Android)) **[Optional]**
 > After install make sure you've storage permission on **termux** and **termux apli**. Otherwise some of options won't work! <br>
 You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
 
 **How to get storage permission:**
-* Go to Android Settings --> Applications --> Termux --> Permissions
+* Go to Android Settings **-->** Applications **-->** Termux **-->** Permissions
 * Revoke Storage permission
 * Grant Storage permission again
 
@@ -59,6 +55,16 @@ echominal
 | Remove a package  | $ **remove** or **r** package_name <br>$ remove vim <br> **or** <br>$ r vim |
 | Update/Upgrade all Packages   | $ **update** or **u**  |
 | Search a Package   | $ **search** or **s** package_name  |
+
+### 3rd Party Scripts
+1. [Weeman](https://github.com/evait-security/weeman)
+2. [Hakku Framework](https://github.com/4shadoww/hakkuframework)
+3. [Aircrack-ng](https://www.aircrack-ng.org/doku.php?id=install_aircrack#installing_aircrack-ng_from_source)
+4. [Nmap](https://nmap.org/book/install.html)
+5. [Zphisher](https://github.com/htr-tech/zphisher)
+6. [Short Url](https://github.com/htr-tech/shorturl)
+7. [zVirus-Gen](https://github.com/ZechBron/zVirus-Gen)
+8. [Bash To mp4](https://github.com/htr-tech/bash2mp4)
 
 ### Web pages
 Official wiki: https://github.com/farhansadik/echominal/wiki <br>
