@@ -35,12 +35,16 @@ https://www.youtube.com/watch?v=uKB5iv8P1mg&ab_channel=FarhanSadik
 
 > Just **copy** and **paste** those commands, one by one:
 ```bash
-$ pkg install git 
-$ git clone https://github.com/farhansadik/echominal.git ~/.config/echominal
-$ bash ~/.config/echominal/tools/install
+pkg install git 
+```
+```bash 
+git clone https://github.com/farhansadik/echominal.git ~/.config/echominal
+```
+```bash
+bash ~/.config/echominal/tools/install
 ```
 To **run** echominal type: 
-```
+```bash
 echominal
 ```
 
